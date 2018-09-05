@@ -8,9 +8,9 @@ public class Click : MonoBehaviour
     private LayerMask movablesLayer;
 
 	// Use this for initialization
-	void Start () {
+	//void Start () {
 		
-	}
+	//}
 	
 	// Update is called once per frame
 	void Update ()
@@ -19,7 +19,7 @@ public class Click : MonoBehaviour
         {
             RaycastHit rayHit;
 
-            if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, movablesLayer))
+            if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, movablesLayer, QueryTriggerInteraction.UseGlobal))
             {
                 rayHit.collider.GetComponent<ClickOn>().ClickMe();
             }
