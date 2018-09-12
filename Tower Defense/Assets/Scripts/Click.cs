@@ -21,7 +21,11 @@ public class Click : MonoBehaviour
 
             if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, movablesLayer, QueryTriggerInteraction.UseGlobal))
             {
-                rayHit.collider.GetComponent<ClickOn>().ClickMe();
+                ClickOn con = rayHit.collider.GetComponent<ClickOn>();
+                if(con)
+                {
+                    con.ClickMe();
+                }
             }
         }
 		
