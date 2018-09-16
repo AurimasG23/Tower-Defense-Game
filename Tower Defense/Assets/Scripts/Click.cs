@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//This script is attached to main camera
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,16 +16,17 @@ public class Click : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButton(0))
         {
             RaycastHit rayHit;
 
-            if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, movablesLayer, QueryTriggerInteraction.UseGlobal))
+            if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, 
+                movablesLayer, QueryTriggerInteraction.UseGlobal))
             {
-                ClickOn con = rayHit.collider.GetComponent<ClickOn>();
-                if(con)
+                OnClick onClick = rayHit.collider.GetComponent<OnClick>();
+                if(onClick)
                 {
-                    con.ClickMe();
+                    onClick.SelectMe();
                 }
             }
         }
