@@ -22,6 +22,8 @@ public class SelectAndMove : MonoBehaviour
         {
             cubeMeshRenderers[i] = buildings[i].GetComponent<MeshRenderer>();
         }
+
+        selectedBuildingIndex = -1;
     }
 	
 	// Update is called once per frame
@@ -41,7 +43,10 @@ public class SelectAndMove : MonoBehaviour
 
     public void DeselectBuildings()
     {
-        cubeMeshRenderers[selectedBuildingIndex].material = red;
-        selectedBuildingIndex = -1;
+        if (selectedBuildingIndex != -1)
+        {
+            cubeMeshRenderers[selectedBuildingIndex].material = red;
+            selectedBuildingIndex = -1;
+        }
     }
 }

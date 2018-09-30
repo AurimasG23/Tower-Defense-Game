@@ -10,7 +10,7 @@ public class Click : MonoBehaviour
     private float maxBuildingClickDuration = 0.4f;
     private float clickTime;
 
-    private OnClick onClick = new OnClick();
+    private OnClick onClick;
 
     // Use this for initialization
     //void Start () {
@@ -29,6 +29,10 @@ public class Click : MonoBehaviour
             {
                 clickTime = Time.timeSinceLevelLoad;
                 onClick = rayHit.collider.GetComponent<OnClick>();               
+            }
+            else
+            {
+                SelectAndMove.instance.DeselectBuildings();
             }
         }
 
