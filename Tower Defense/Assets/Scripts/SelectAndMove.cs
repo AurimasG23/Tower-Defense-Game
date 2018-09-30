@@ -5,10 +5,10 @@ using UnityEngine;
 public class SelectAndMove : MonoBehaviour
 {
     public GameObject[] buildings;
-    private static int numberOfBiuldings = 3;
+    private static int numberOfBuildings = 3;
     public int selectedBuildingIndex;
 
-    private MeshRenderer[] cubeMeshRenderers = new MeshRenderer[numberOfBiuldings];
+    private MeshRenderer[] cubeMeshRenderers = new MeshRenderer[numberOfBuildings];
     public Material red;
     public Material green;
 
@@ -18,7 +18,7 @@ public class SelectAndMove : MonoBehaviour
     {
         instance = this;
 
-        for(int i = 0; i < numberOfBiuldings; i++)
+        for(int i = 0; i < numberOfBuildings; i++)
         {
             cubeMeshRenderers[i] = buildings[i].GetComponent<MeshRenderer>();
         }
