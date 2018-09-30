@@ -31,8 +31,17 @@ public class SelectAndMove : MonoBehaviour
 
     public void selectBuilding(int index)
     {
-        cubeMeshRenderers[selectedBuildingIndex].material = red;
+        if (selectedBuildingIndex != -1)
+        {
+            cubeMeshRenderers[selectedBuildingIndex].material = red;
+        }
         selectedBuildingIndex = index;
         cubeMeshRenderers[selectedBuildingIndex].material = green;
+    }
+
+    public void DeselectBuildings()
+    {
+        cubeMeshRenderers[selectedBuildingIndex].material = red;
+        selectedBuildingIndex = -1;
     }
 }

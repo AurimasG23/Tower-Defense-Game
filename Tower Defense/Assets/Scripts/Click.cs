@@ -7,29 +7,41 @@ public class Click : MonoBehaviour
 {
     [SerializeField]
     private LayerMask movablesLayer;
+    private float maxBuildingClickDuration = 0.4f;
+    private float clickTime;
 
-	// Use this for initialization
-	//void Start () {
-		
-	//}
-	
-	// Update is called once per frame
-	void Update ()
+    private OnClick onClick = new OnClick();
+
+    // Use this for initialization
+    //void Start () {
+
+    //}
+
+    // Update is called once per frame
+    void Update ()
     {
-        if(Input.GetMouseButton(0))
+        if(Input.GetMouseButtonDown(0))
         {
             RaycastHit rayHit;
 
             if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity, 
                 movablesLayer, QueryTriggerInteraction.UseGlobal))
             {
-                OnClick onClick = rayHit.collider.GetComponent<OnClick>();
-                if(onClick)
+                clickTime = Time.timeSinceLevelLoad;
+                onClick = rayHit.collider.GetComponent<OnClick>();               
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (Time.timeSinceLevelLoad - clickTime <= maxBuildingClickDuration)
+            {
+                if (onClick)
                 {
                     onClick.SelectMe();
                 }
             }
+
         }
-		
-	}
+    }
 }
