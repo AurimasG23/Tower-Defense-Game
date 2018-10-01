@@ -6,7 +6,7 @@ public class SelectAndMove : MonoBehaviour
 {
     public GameObject[] buildings;
     private static int numberOfBuildings = 3;
-    public int selectedBuildingIndex;
+    public int selectedBuildingIndex = -1;
 
     private MeshRenderer[] cubeMeshRenderers = new MeshRenderer[numberOfBuildings];
     public Material red;
@@ -39,6 +39,7 @@ public class SelectAndMove : MonoBehaviour
         }
         selectedBuildingIndex = index;
         cubeMeshRenderers[selectedBuildingIndex].material = green;
+        BuildingPlacement.instance.SetItem(buildings[selectedBuildingIndex]);
     }
 
     public void DeselectBuildings()
