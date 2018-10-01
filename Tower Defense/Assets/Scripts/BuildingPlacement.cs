@@ -5,7 +5,11 @@ using UnityEngine;
 public class BuildingPlacement : MonoBehaviour
 {
     private Transform selectedBuilding;
-    private bool mouseButtonPressed;
+    private bool mouseButtonPressedOnBuilding;
+
+    [SerializeField]
+    private LayerMask movablesLayer;
+    private OnClick onClick;
 
     public static BuildingPlacement instance;
 
@@ -14,55 +18,79 @@ public class BuildingPlacement : MonoBehaviour
     {
         instance = this;
 
-        mouseButtonPressed = false;
+        mouseButtonPressedOnBuilding = false;
 
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
+        // check if mouse is pressed on selected building
         if(Input.GetMouseButtonDown(0))
         {
-            mouseButtonPressed = true;
+            RaycastHit rayHit;
+
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity,
+                movablesLayer, QueryTriggerInteraction.UseGlobal))
+            {
+                onClick = rayHit.collider.GetComponent<OnClick>();
+                if (onClick)
+                {
+                    if(onClick.index == SelectAndMove.instance.selectedBuildingIndex)
+                    {
+                        mouseButtonPressedOnBuilding = true;
+                    }
+                }
+            }          
         }
         if(Input.GetMouseButtonUp(0))
         {
-            mouseButtonPressed = false;
-        }
+            mouseButtonPressedOnBuilding = false;
+        }    
 
-        //if(Input.touchCount > 0)
-        //      {
-        //          Touch touch = Input.GetTouch(0);
-        //          switch (touch.phase)
-        //          {
-        //              case TouchPhase.Began:
-        //                  Vector3 m = touch.position;
-        //                  break;
-        //              case TouchPhase.Moved:
-        //                  m = new Vector3(touch.position.x, touch.position.y, transform.position.y);
-        //                  Vector3 pos = GetComponent<Camera>().ScreenToViewportPoint(m);
-        //                  selectedBuilding.position = new Vector3(pos.x / 2, 0, pos.y * 5);
-        //                  break;
-        //              case TouchPhase.Ended:
-        //                  break;
-        //          }
-        //      }
-
-
-        if (SelectAndMove.instance.selectedBuildingIndex != -1 && mouseButtonPressed)
+        // jei yra pasirinktas pastatas ir ant jo paspausta pele, tuomet pagal pele keiciam pastato pozicija
+        if (SelectAndMove.instance.selectedBuildingIndex != -1 && mouseButtonPressedOnBuilding)
         {
-            Vector3 m = Input.mousePosition;
-            m = new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.y);
-            Vector3 pos = GetComponent<Camera>().ScreenToViewportPoint(m);
-            selectedBuilding.position = new Vector3(pos.x / 2, 0.5f, pos.y * 5);           
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            RaycastHit hitInfo;
+            if(Physics.Raycast(ray, out hitInfo))
+            {
+                //selectedBuilding.position = new Vector3(hitInfo.point.x, 0.5f, hitInfo.point.z);
+                SetBuildingPosition(hitInfo.point.x, hitInfo.point.z);
+            }
         }
 
-	}
+    }
 
     public void SetItem(GameObject building)
     {
-        //selectedBuilding = (Instantiate(building, new Vector3(0, 0, 0), Quaternion.identity)).transform;
         selectedBuilding = building.transform;
-        //GetComponent<Camera>().transform.position = new Vector3(-10, GetComponent<Camera>().transform.position.y, -10);
+    }
+
+    //padeda pastata i reikiama pozicija pagal grid
+    private void SetBuildingPosition(float x, float z)
+    {       
+        float xValue;
+        if(x >= 0)
+        {
+            xValue = Mathf.Floor(x) + 0.5f;
+        }
+        else
+        {
+            xValue = Mathf.Ceil(x) - 0.5f;
+        }
+
+        float zValue;
+        if (z >= 0)
+        {
+            zValue = Mathf.Floor(z) + 0.5f;
+        }
+        else
+        {
+            zValue = Mathf.Ceil(z) - 0.5f;
+        }
+
+        selectedBuilding.position = new Vector3(xValue, 0.5f, zValue);
     }
 }
