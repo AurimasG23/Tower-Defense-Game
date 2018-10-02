@@ -5,7 +5,8 @@ using UnityEngine;
 public class SelectAndMove : MonoBehaviour
 {
     public GameObject[] buildings;
-    private static int numberOfBuildings = 10;
+    private static int numberOfBuildings = 12;
+    public BuildingDimensions[] buildingsDimensions;
     public int selectedBuildingIndex = -1;
 
     private MeshRenderer[] cubeMeshRenderers = new MeshRenderer[numberOfBuildings];

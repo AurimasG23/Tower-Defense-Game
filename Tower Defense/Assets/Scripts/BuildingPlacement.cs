@@ -56,7 +56,6 @@ public class BuildingPlacement : MonoBehaviour
             RaycastHit hitInfo;
             if(Physics.Raycast(ray, out hitInfo))
             {
-                //selectedBuilding.position = new Vector3(hitInfo.point.x, 0.5f, hitInfo.point.z);
                 SetBuildingPosition(hitInfo.point.x, hitInfo.point.z);
             }
         }
@@ -70,25 +69,81 @@ public class BuildingPlacement : MonoBehaviour
 
     //padeda pastata i reikiama pozicija pagal grid
     private void SetBuildingPosition(float x, float z)
-    {       
-        float xValue;
-        if(x >= 0)
-        {
-            xValue = Mathf.Floor(x) + 0.5f;
+    {
+        float xValue = 0;
+        if (SelectAndMove.instance.buildingsDimensions[SelectAndMove.instance.selectedBuildingIndex].xLength % 2 == 1)
+        {           
+            if (x >= 0)
+            {
+                xValue = Mathf.Floor(x) + 0.5f;
+            }
+            else
+            {
+                xValue = Mathf.Ceil(x) - 0.5f;
+            }
         }
         else
         {
-            xValue = Mathf.Ceil(x) - 0.5f;
-        }
+            if (x >= 0)
+            {
+                if(x - Mathf.Floor(x) >= 0.5)
+                {
+                    xValue = Mathf.Ceil(x);
+                }
+                else
+                {
+                    xValue = Mathf.Floor(x);
+                }
+            }
+            else
+            {
+                if(x - Mathf.Ceil(x) <= -0.5)
+                {
+                    xValue = Mathf.Floor(x);
+                }
+                else
+                {
+                    xValue = Mathf.Ceil(x);
+                }                
+            }
+        }       
 
-        float zValue;
-        if (z >= 0)
+        float zValue = 0;
+        if (SelectAndMove.instance.buildingsDimensions[SelectAndMove.instance.selectedBuildingIndex].zWidth % 2 == 1)
         {
-            zValue = Mathf.Floor(z) + 0.5f;
+            if (z >= 0)
+            {
+                zValue = Mathf.Floor(z) + 0.5f;
+            }
+            else
+            {
+                zValue = Mathf.Ceil(z) - 0.5f;
+            }
         }
         else
         {
-            zValue = Mathf.Ceil(z) - 0.5f;
+            if (z >= 0)
+            {
+                if (z - Mathf.Floor(z) >= 0.5)
+                {
+                    zValue = Mathf.Ceil(z);
+                }
+                else
+                {
+                    zValue = Mathf.Floor(z);
+                }
+            }
+            else
+            {
+                if (z - Mathf.Ceil(z) <= -0.5)
+                {
+                    zValue = Mathf.Floor(z);
+                }
+                else
+                {
+                    zValue = Mathf.Ceil(z);
+                }
+            }
         }
 
         selectedBuilding.position = new Vector3(xValue, 0.5f, zValue);
