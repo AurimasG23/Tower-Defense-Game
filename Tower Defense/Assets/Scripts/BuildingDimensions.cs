@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//objekto matmenu klase
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

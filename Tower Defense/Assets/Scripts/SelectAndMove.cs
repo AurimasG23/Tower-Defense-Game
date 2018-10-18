@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class SelectAndMove : MonoBehaviour
 {
-    public GameObject[] buildings;
-    private static int numberOfBuildings = 12;
-    public BuildingDimensions[] buildingsDimensions;
+    public GameObject[] buildings;                      //pastatai
+    //public GameObject[] buildingsObjects;               //pastatu objektai (virsutine dalis)
+    //public GameObject[] buildingsBasis;                 //pastatu pagrindai (plokscia apacia)
+    private static int numberOfBuildings = 2;           //pastatu kiekis
+    public BuildingDimensions[] buildingsDimensions;    //pastatu matmenys
     public int selectedBuildingIndex = -1;
 
-    private MeshRenderer[] cubeMeshRenderers = new MeshRenderer[numberOfBuildings];
+    //private MeshRenderer[] buildingObjectsMeshRenderers = new MeshRenderer[numberOfBuildings];
+    private MeshRenderer[] buildingBasisMeshRenderers = new MeshRenderer[numberOfBuildings];
     public Material red;
     public Material green;
 
@@ -21,14 +24,16 @@ public class SelectAndMove : MonoBehaviour
 
         for(int i = 0; i < numberOfBuildings; i++)
         {
-            cubeMeshRenderers[i] = buildings[i].GetComponent<MeshRenderer>();
+            //cubeMeshRenderers[i] = buildings[i].GetComponent<MeshRenderer>();
+            //buildingBasisMeshRenderers[i] = buildingsBasis[i].GetComponent<MeshRenderer>();
         }
 
         selectedBuildingIndex = -1;
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
@@ -36,10 +41,10 @@ public class SelectAndMove : MonoBehaviour
     {
         if (selectedBuildingIndex != -1)
         {
-            cubeMeshRenderers[selectedBuildingIndex].material = red;
+            //cubeMeshRenderers[selectedBuildingIndex].material = red;
         }
         selectedBuildingIndex = index;
-        cubeMeshRenderers[selectedBuildingIndex].material = green;
+        //cubeMeshRenderers[selectedBuildingIndex].material = green;
         BuildingPlacement.instance.SetItem(buildings[selectedBuildingIndex]);
     }
 
@@ -47,7 +52,7 @@ public class SelectAndMove : MonoBehaviour
     {
         if (selectedBuildingIndex != -1)
         {
-            cubeMeshRenderers[selectedBuildingIndex].material = red;
+            //cubeMeshRenderers[selectedBuildingIndex].material = red;
             selectedBuildingIndex = -1;
         }
     }

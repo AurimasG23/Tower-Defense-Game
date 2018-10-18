@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿//objektu pozicijos keitimo klase
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildingPlacement : MonoBehaviour
 {
-    private Transform selectedBuilding;
-    private bool mouseButtonPressedOnBuilding;
+    private Transform selectedBuilding;              //pasirinktas pastatas
+    private bool mouseButtonPressedOnBuilding;       //ar pele paspausta ant pastato
 
     [SerializeField]
     private LayerMask movablesLayer;
