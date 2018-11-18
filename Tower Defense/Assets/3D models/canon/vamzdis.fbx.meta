@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3fc52a2f6753cf641a8dc6ca0c08cfee
+guid: f17af8b95b9e1fd48b36816afbda0e4a
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cube.015(laikikliai apatiniai)
+    4300000: Cylinder.025(vamzdis)
   externalObjects: {}
   materials:
     importMaterials: 1

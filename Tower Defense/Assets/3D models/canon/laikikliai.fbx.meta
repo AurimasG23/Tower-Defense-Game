@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 273f961a7dd332341bcb20aedce63c3d
+guid: 68282b3ff7e03b647b6244df2af3c2f5
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cylinder.027(varztai laikikliu)
+    4300000: Cube.015(laikikliai apatiniai).001
   externalObjects: {}
   materials:
     importMaterials: 1
