@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class SelectAndMove : MonoBehaviour
 {
+    //------------------------------------------------------------------
+    private static int numberOfBuildings = 3;           //pastatu kiekis
+    //------------------------------------------------------------------
+
     public GameObject[] buildings;                      //pastatai
     //public GameObject[] buildingsObjects;               //pastatu objektai (virsutine dalis)
-    //public GameObject[] buildingsBasis;                 //pastatu pagrindai (plokscia apacia)
-    private static int numberOfBuildings = 2;           //pastatu kiekis
+    //public GameObject[] buildingsBasis;                 //pastatu pagrindai (plokscia apacia)   
     public BuildingDimensions[] buildingsDimensions;    //pastatu matmenys
     public int selectedBuildingIndex = -1;
 

@@ -147,6 +147,6 @@ public class BuildingPlacement : MonoBehaviour
             }
         }
 
-        selectedBuilding.position = new Vector3(xValue, 0.5f, zValue);
+        selectedBuilding.position = new Vector3(xValue, 0, zValue);  //judinamo objekto pozicija
     }
 }
