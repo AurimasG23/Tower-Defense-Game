@@ -5,7 +5,7 @@ using UnityEngine;
 public class SelectAndMove : MonoBehaviour
 {
     //------------------------------------------------------------------
-    private static int numberOfBuildings = 3;           //pastatu kiekis
+    private static int numberOfBuildings = 4;           //pastatu kiekis
     //------------------------------------------------------------------
 
     public GameObject[] buildings;                      //pastatai
