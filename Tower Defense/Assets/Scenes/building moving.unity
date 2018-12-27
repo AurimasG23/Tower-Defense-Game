@@ -3209,6 +3209,11 @@ MonoBehaviour:
   - {fileID: 249919458}
   - {fileID: 378185624}
   - {fileID: 214043688}
+  buildingsBasis:
+  - {fileID: 1596950232}
+  - {fileID: 1735781992}
+  - {fileID: 1326476955}
+  - {fileID: 180986795}
   buildingsDimensions:
   - xLength: 1
     zWidth: 1
