@@ -30,7 +30,7 @@ public class DataFileHandler
         return locations;
     }
 
-    public static void ChangeBuildingLocation(string dataFile, BuildingLocation[] locations, int countOfBuildings)
+    public static void ChangeBuildingLocations(string dataFile, BuildingLocation[] locations, int countOfBuildings)
     {
         string dataPath = Application.persistentDataPath;
         string FilePath = Path.Combine(dataPath, dataFile + ".txt");
@@ -49,11 +49,14 @@ public class DataFileHandler
     {
         string dataPath = Application.persistentDataPath;
         string FilePath = Path.Combine(dataPath, dataFile + ".txt");
-        StreamWriter writer = new StreamWriter(new FileStream(FilePath, FileMode.Create));
-        for (int i = 0; i < countOfBuildings; i++)
+        if (!File.Exists(FilePath))
         {
-            writer.WriteLine("0 -100 0");
+            StreamWriter writer = new StreamWriter(new FileStream(FilePath, FileMode.Create));
+            for (int i = 0; i < countOfBuildings; i++)
+            {
+                writer.WriteLine("0 -100 0");
+            }
+            writer.Close();
         }
-        writer.Close();
     }
 }

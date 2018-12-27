@@ -1,4 +1,5 @@
-﻿//objektu pozicijos keitimo klase
+﻿//pasirinkto objekto pozicijos keitimo klasė. Ji užtikrina kad objektas judės pagal grida.
+//dirbama tik su vienu(pasirinktu) objektu
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine;
 public class BuildingPlacement : MonoBehaviour
 {
     private Transform selectedBuilding;              //pasirinktas pastatas
+    private BuildingDimensions selectedBuildingDimensions;  //pasirinkto pastato matmenys
     private bool mouseButtonPressedOnBuilding;       //ar pele paspausta ant pastato
 
     [SerializeField]
@@ -57,15 +59,23 @@ public class BuildingPlacement : MonoBehaviour
             RaycastHit hitInfo;
             if(Physics.Raycast(ray, out hitInfo))
             {
-                SetBuildingPosition(hitInfo.point.x, hitInfo.point.z);
+                if (hitInfo.point.x > -22 && hitInfo.point.x < 22 && hitInfo.point.z > -22 && hitInfo.point.z < 22)
+                {
+                    SetBuildingPosition(hitInfo.point.x, hitInfo.point.z);
+                }
+                else
+                {
+                    mouseButtonPressedOnBuilding = false;
+                }
             }
         }
 
     }
 
-    public void SetItem(GameObject building)
+    public void SetItem(GameObject building, BuildingDimensions dimensions)
     {
         selectedBuilding = building.transform;
+        selectedBuildingDimensions = new BuildingDimensions(dimensions.xLength, dimensions.zWidth);
     }
 
     //padeda pastata i reikiama pozicija pagal grid
@@ -147,6 +157,11 @@ public class BuildingPlacement : MonoBehaviour
             }
         }
 
-        selectedBuilding.position = new Vector3(xValue, 0, zValue);  //judinamo objekto pozicija
+        float boundsX = 20 - (selectedBuildingDimensions.xLength / 2) + 1;
+        float boundsZ = 20 - (selectedBuildingDimensions.zWidth / 2) + 1;
+        if (xValue > -boundsX && xValue < boundsX && zValue > -boundsZ && zValue < boundsZ)
+        {
+            selectedBuilding.position = new Vector3(xValue, 0, zValue);  //judinamo objekto pozicija
+        }
     }
 }

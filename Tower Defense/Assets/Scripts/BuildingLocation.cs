@@ -15,5 +15,4 @@ public class BuildingLocation
         y = _y;
         z = _z;
     }
-
 }
