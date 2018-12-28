@@ -162,7 +162,7 @@ public class BuildingPlacement : MonoBehaviour
         if (xValue > -boundsX && xValue < boundsX && zValue > -boundsZ && zValue < boundsZ)
         {
             selectedBuilding.position = new Vector3(xValue, 0, zValue);  //judinamo objekto pozicija
-            SelectAndMove.instance.EmptySpot(SelectAndMove.instance.selectedBuildingIndex);
+            SelectAndMove.instance.EmptySpot(SelectAndMove.instance.selectedBuildingIndex); // tikrinam ar esamoj objekto pozicijoj nera kito objekto
         }
     }
 }

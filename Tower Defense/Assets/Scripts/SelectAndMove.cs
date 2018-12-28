@@ -54,16 +54,24 @@ public class SelectAndMove : MonoBehaviour
 		
 	}
 
+    //-----------------------------------------------------------------------------------------------------
     public void selectBuilding(int index)
     {
         if (selectedBuildingIndex != -1)
-        {
-            //cubeMeshRenderers[selectedBuildingIndex].material = red;
-            buildingsLocations[selectedBuildingIndex] = new BuildingLocation(buildings[selectedBuildingIndex].transform.position.x, buildings[selectedBuildingIndex].transform.position.y, buildings[selectedBuildingIndex].transform.position.z);
-
+        {           
+            if(EmptySpot(selectedBuildingIndex))
+            {
+                ClearSquares(selectedBuildingIndex, buildingsLocations[selectedBuildingIndex]);
+                buildingsLocations[selectedBuildingIndex] = new BuildingLocation(buildings[selectedBuildingIndex].transform.position.x, buildings[selectedBuildingIndex].transform.position.y, buildings[selectedBuildingIndex].transform.position.z);
+                FillSquares(selectedBuildingIndex, buildingsLocations[selectedBuildingIndex]);
+            }
+            else
+            {
+                buildings[selectedBuildingIndex].transform.position = new Vector3(buildingsLocations[selectedBuildingIndex].x, buildingsLocations[selectedBuildingIndex].y, buildingsLocations[selectedBuildingIndex].z);
+                buildingBasisMeshRenderers[selectedBuildingIndex].material = green;
+            }          
         }
         selectedBuildingIndex = index;
-        //cubeMeshRenderers[selectedBuildingIndex].material = green;
         BuildingPlacement.instance.SetItem(buildings[selectedBuildingIndex], buildingsDimensions[selectedBuildingIndex]);
     }
 
@@ -71,41 +79,49 @@ public class SelectAndMove : MonoBehaviour
     {
         if (selectedBuildingIndex != -1)
         {
-            //cubeMeshRenderers[selectedBuildingIndex].material = red;
-            buildingsLocations[selectedBuildingIndex] = new BuildingLocation(buildings[selectedBuildingIndex].transform.position.x, buildings[selectedBuildingIndex].transform.position.y, buildings[selectedBuildingIndex].transform.position.z);            
+            if (EmptySpot(selectedBuildingIndex))
+            {
+                ClearSquares(selectedBuildingIndex, buildingsLocations[selectedBuildingIndex]);
+                buildingsLocations[selectedBuildingIndex] = new BuildingLocation(buildings[selectedBuildingIndex].transform.position.x, buildings[selectedBuildingIndex].transform.position.y, buildings[selectedBuildingIndex].transform.position.z);
+                FillSquares(selectedBuildingIndex, buildingsLocations[selectedBuildingIndex]);
+            }
+            else
+            {
+                buildings[selectedBuildingIndex].transform.position = new Vector3(buildingsLocations[selectedBuildingIndex].x, buildingsLocations[selectedBuildingIndex].y, buildingsLocations[selectedBuildingIndex].z);
+                buildingBasisMeshRenderers[selectedBuildingIndex].material = green;
+            }
             selectedBuildingIndex = -1;
         }
     }
+    //-------------------------------------------------------------------------------------------------------
 
     public void SaveBuildingsLocations()
     {
-        //buildingsLocations[0] = new BuildingLocation(8, 0, 8);
-        //buildingsLocations[1] = new BuildingLocation(-8, 0, 8);
-        //buildingsLocations[2] = new BuildingLocation(-8, 0, -8);
-        //buildingsLocations[3] = new BuildingLocation(8, 0, -8);
+        //Renew();
         DataFileHandler.ChangeBuildingLocations(buildingLocationsDataFile, buildingsLocations, numberOfBuildings);
+        DataFileHandler.ChangeBaseSquares(baseSquaresDataFile, base_squares, gridDimension);
     }
 
-    private Vector2[,] FindBuildingSquares(int biuldingIndex)
+    private Vector2[,] FindBuildingSquares(int biuldingIndex, BuildingLocation buildingLocation)
     {
         Vector2[,]  squares = new Vector2[buildingsDimensions[biuldingIndex].xLength, buildingsDimensions[biuldingIndex].zWidth];
         double startX = 0;
         double startZ = 0;
-        if(buildings[biuldingIndex].transform.position.x > 0)
+        if(buildingLocation.x > 0)
         {
-            startX = buildings[biuldingIndex].transform.position.x - (buildingsDimensions[biuldingIndex].xLength / 2);
+            startX = buildingLocation.x - (buildingsDimensions[biuldingIndex].xLength / 2);
         }
         else
         {
-            startX = buildings[biuldingIndex].transform.position.x - (buildingsDimensions[biuldingIndex].xLength / 2) - 1;
+            startX = buildingLocation.x - (buildingsDimensions[biuldingIndex].xLength / 2) - 1;
         }      
-        if(buildings[biuldingIndex].transform.position.z > 0)
+        if(buildingLocation.z > 0)
         {
-            startZ = buildings[biuldingIndex].transform.position.z - (buildingsDimensions[biuldingIndex].zWidth / 2);
+            startZ = buildingLocation.z - (buildingsDimensions[biuldingIndex].zWidth / 2);
         }
         else
         {
-            startZ = buildings[biuldingIndex].transform.position.z - (buildingsDimensions[biuldingIndex].zWidth / 2) - 1;
+            startZ = buildingLocation.z - (buildingsDimensions[biuldingIndex].zWidth / 2) - 1;
         }
         
         for (int i = 0; i < buildingsDimensions[biuldingIndex].zWidth;  i++)
@@ -137,12 +153,14 @@ public class SelectAndMove : MonoBehaviour
 
     public bool EmptySpot(int buildingIndex)
     {
-        Vector2[,] buildingSquares = FindBuildingSquares(buildingIndex);
+        BuildingLocation location = new BuildingLocation(buildings[buildingIndex].transform.position.x, buildings[buildingIndex].transform.position.y,buildings[buildingIndex].transform.position.z);
+        Vector2[,] buildingSquares = FindBuildingSquares(buildingIndex, location);
         for(int i = 0; i < buildingsDimensions[buildingIndex].zWidth; i++)
         {
             for (int j = 0; j < buildingsDimensions[buildingIndex].xLength; j++)
             {
-                if(base_squares[(int)buildingSquares[i,j].x, (int)buildingSquares[i, j].y] != -1)
+                if(base_squares[(int)buildingSquares[i,j].x, (int)buildingSquares[i, j].y] != -1 &&
+                    base_squares[(int)buildingSquares[i, j].x, (int)buildingSquares[i, j].y] != buildingIndex)
                 {
                     buildingBasisMeshRenderers[buildingIndex].material = red;
                     return false;
@@ -151,5 +169,69 @@ public class SelectAndMove : MonoBehaviour
         }
         buildingBasisMeshRenderers[buildingIndex].material = green;
         return true;
+    }
+
+    //langeliai uzpildomi pastato indeksu
+    public void FillSquares(int buildingIndex, BuildingLocation location)
+    {
+        Vector2[,] buildingSquares = FindBuildingSquares(buildingIndex, location);
+        for (int i = 0; i < buildingsDimensions[buildingIndex].zWidth; i++)
+        {
+            for (int j = 0; j < buildingsDimensions[buildingIndex].xLength; j++)
+            {
+                base_squares[(int)buildingSquares[i, j].x, (int)buildingSquares[i, j].y] = buildingIndex;
+            }
+        }
+    }
+
+    public void ClearSquares(int buildingIndex, BuildingLocation location)
+    {
+        Vector2[,] squaresToClear = FindBuildingSquares(buildingIndex, location);
+        for (int i = 0; i < buildingsDimensions[buildingIndex].zWidth; i++)
+        {
+            for (int j = 0; j < buildingsDimensions[buildingIndex].xLength; j++)
+            {
+                if(base_squares[(int)squaresToClear[i, j].x, (int)squaresToClear[i, j].y] == buildingIndex)
+                {
+                    base_squares[(int)squaresToClear[i, j].x, (int)squaresToClear[i, j].y] = -1;
+                }              
+            }
+        }
+    }
+    //-----------------------------------------------------------------------------------------
+
+    private void Renew()
+    {
+        buildingsLocations[0] = new BuildingLocation(5.5f, 0, 5.5f);
+        buildingsLocations[1] = new BuildingLocation(-5.5f, 0, 5.5f);
+        buildingsLocations[2] = new BuildingLocation(-5, 0, -5);
+        buildingsLocations[3] = new BuildingLocation(5, 0, -5);
+
+        for(int i = 0; i < gridDimension; i++)
+        {
+            for (int j = 0; j < gridDimension; j++)
+            {
+                base_squares[i, j] = -1;
+            }
+        }
+
+        base_squares[25, 25] = 0;
+        base_squares[14, 25] = 1;
+        Vector2[,] buildingSquares = FindBuildingSquares(2, buildingsLocations[2]);
+        for (int i = 0; i < buildingsDimensions[2].zWidth; i++)
+        {
+            for (int j = 0; j < buildingsDimensions[2].xLength; j++)
+            {
+                base_squares[(int)buildingSquares[i, j].x, (int)buildingSquares[i, j].y] = 2;
+            }
+        }
+        buildingSquares = FindBuildingSquares(3, buildingsLocations[3]);
+        for (int i = 0; i < buildingsDimensions[3].zWidth; i++)
+        {
+            for (int j = 0; j < buildingsDimensions[3].xLength; j++)
+            {
+                base_squares[(int)buildingSquares[i, j].x, (int)buildingSquares[i, j].y] = 3;
+            }
+        }
     }
 }
