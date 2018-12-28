@@ -5,26 +5,26 @@ using UnityEngine;
 public class SelectAndMove : MonoBehaviour
 {
     //------------------------------------------------------------------
-    private static int numberOfBuildings = 4;           //pastatu kiekis
+    private static int numberOfBuildings = 4;           //pastatų kiekis
     private static int gridDimension = 40;              //bazės pagrindo matmenys
     //------------------------------------------------------------------
 
     public GameObject[] buildings;                      //pastatai
     public GameObject[] buildingsBasis;                 //pastatu pagrindai (plokscia apacia)   
     public BuildingDimensions[] buildingsDimensions;    //pastatu matmenys
-    public int selectedBuildingIndex = -1;
+    public int selectedBuildingIndex = -1;              //pasirinkto pastato indeksas
 
-    private BuildingLocation[] buildingsLocations = new BuildingLocation[numberOfBuildings];
-    private string buildingLocationsDataFile = "buildingLocations";
+    private BuildingLocation[] buildingsLocations = new BuildingLocation[numberOfBuildings];    // pastatų pozicijos
+    private string buildingLocationsDataFile = "buildingLocations";                             // pastatų pozicijų duomenų failas
 
-    private int[,] base_squares = new int[gridDimension, gridDimension];
-    private string baseSquaresDataFile = "baseSquares";
+    private int[,] base_squares = new int[gridDimension, gridDimension];        // bazės pagrindo langeliu matrica, kur saugomi pastatų užimami plotai
+    private string baseSquaresDataFile = "baseSquares";                         // bazės pagrindo langelių duomenų failas
 
-    private MeshRenderer[] buildingBasisMeshRenderers = new MeshRenderer[numberOfBuildings];
-    public Material red;
-    public Material green;
+    private MeshRenderer[] buildingBasisMeshRenderers = new MeshRenderer[numberOfBuildings];  // pastatų pagrindų mesh redereriai
+    public Material red;     // raudona pastato pagrindo spalva
+    public Material green;   // žalia pastato pagrindo spalva
 
-    public GameObject selectedBuildingArrows;
+    public GameObject selectedBuildingArrows;  // pasirinkto pastato rodyklės
     public GameObject arrow_x_p;
     public GameObject arrow_x_n;
     public GameObject arrow_z_p;

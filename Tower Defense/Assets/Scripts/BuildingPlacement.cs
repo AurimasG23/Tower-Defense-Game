@@ -28,11 +28,12 @@ public class BuildingPlacement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        // check if mouse is pressed on selected building
+        // jeigu paspaudžiamas pelės klavišas
         if(Input.GetMouseButtonDown(0))
         {
             RaycastHit rayHit;
 
+            // jeigu paspaudžiama ant pastato
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity,
                 movablesLayer, QueryTriggerInteraction.UseGlobal))
             {
@@ -46,6 +47,7 @@ public class BuildingPlacement : MonoBehaviour
                 }
             }          
         }
+        // jeigu atleidžiamas pelės klavišas
         if(Input.GetMouseButtonUp(0))
         {
             mouseButtonPressedOnBuilding = false;
@@ -72,6 +74,7 @@ public class BuildingPlacement : MonoBehaviour
 
     }
 
+    // gaunmas pastato transformavimo objektas ir pastato matmenys
     public void SetItem(GameObject building, BuildingDimensions dimensions)
     {
         selectedBuilding = building.transform;
@@ -163,7 +166,7 @@ public class BuildingPlacement : MonoBehaviour
         {
             selectedBuilding.position = new Vector3(xValue, 0, zValue);  //judinamo objekto pozicija
             SelectAndMove.instance.EmptySpot(SelectAndMove.instance.selectedBuildingIndex); // tikrinam ar esamoj objekto pozicijoj nera kito objekto
-            SelectAndMove.instance.selectedBuildingArrows.transform.position = new Vector3(xValue, 0, zValue);
+            SelectAndMove.instance.selectedBuildingArrows.transform.position = new Vector3(xValue, 0, zValue); // rodyklių pozicija
         }
     }
 }
