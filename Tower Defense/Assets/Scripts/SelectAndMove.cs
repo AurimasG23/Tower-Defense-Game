@@ -24,6 +24,12 @@ public class SelectAndMove : MonoBehaviour
     public Material red;
     public Material green;
 
+    public GameObject selectedBuildingArrows;
+    public GameObject arrow_x_p;
+    public GameObject arrow_x_n;
+    public GameObject arrow_z_p;
+    public GameObject arrow_z_n;
+
     public static SelectAndMove instance;
 	// Use this for initialization
 	void Start ()
@@ -46,6 +52,8 @@ public class SelectAndMove : MonoBehaviour
 
         DataFileHandler.SetBuildingsSquaresOnFirstLaunch(baseSquaresDataFile, gridDimension);
         base_squares = DataFileHandler.ReadBaseSquares(baseSquaresDataFile, gridDimension);
+
+        selectedBuildingArrows.transform.position = new Vector3(0, -100, 0);
     }
 	
 	// Update is called once per frame
@@ -73,6 +81,8 @@ public class SelectAndMove : MonoBehaviour
         }
         selectedBuildingIndex = index;
         BuildingPlacement.instance.SetItem(buildings[selectedBuildingIndex], buildingsDimensions[selectedBuildingIndex]);
+        SetArrowsLocalPosition(selectedBuildingIndex);
+        selectedBuildingArrows.transform.position = new Vector3(buildingsLocations[selectedBuildingIndex].x, 0, buildingsLocations[selectedBuildingIndex].z);
     }
 
     public void DeselectBuildings()
@@ -91,6 +101,7 @@ public class SelectAndMove : MonoBehaviour
                 buildingBasisMeshRenderers[selectedBuildingIndex].material = green;
             }
             selectedBuildingIndex = -1;
+            selectedBuildingArrows.transform.position = new Vector3(0, -100, 0);
         }
     }
     //-------------------------------------------------------------------------------------------------------
@@ -197,6 +208,16 @@ public class SelectAndMove : MonoBehaviour
                 }              
             }
         }
+    }
+
+    private void SetArrowsLocalPosition(int buildingIndex)
+    {
+        float x_value = buildingsDimensions[buildingIndex].xLength / 2 + 1;
+        float z_value = buildingsDimensions[buildingIndex].zWidth / 2 + 1;
+        arrow_x_p.transform.localPosition = new Vector3(x_value, 0, 0);
+        arrow_x_n.transform.localPosition = new Vector3(-x_value, 0, 0);
+        arrow_z_p.transform.localPosition = new Vector3(0, 0, z_value);
+        arrow_z_n.transform.localPosition = new Vector3(0, 0, -z_value);
     }
     //-----------------------------------------------------------------------------------------
 

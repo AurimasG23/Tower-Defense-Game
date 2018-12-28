@@ -163,6 +163,7 @@ public class BuildingPlacement : MonoBehaviour
         {
             selectedBuilding.position = new Vector3(xValue, 0, zValue);  //judinamo objekto pozicija
             SelectAndMove.instance.EmptySpot(SelectAndMove.instance.selectedBuildingIndex); // tikrinam ar esamoj objekto pozicijoj nera kito objekto
+            SelectAndMove.instance.selectedBuildingArrows.transform.position = new Vector3(xValue, 0, zValue);
         }
     }
 }
