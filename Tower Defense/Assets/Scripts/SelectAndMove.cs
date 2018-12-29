@@ -212,12 +212,12 @@ public class SelectAndMove : MonoBehaviour
 
     private void SetArrowsLocalPosition(int buildingIndex)
     {
-        float x_value = buildingsDimensions[buildingIndex].xLength / 2 + 1;
-        float z_value = buildingsDimensions[buildingIndex].zWidth / 2 + 1;
-        arrow_x_p.transform.localPosition = new Vector3(x_value, 0, 0);
-        arrow_x_n.transform.localPosition = new Vector3(-x_value, 0, 0);
-        arrow_z_p.transform.localPosition = new Vector3(0, 0, z_value);
-        arrow_z_n.transform.localPosition = new Vector3(0, 0, -z_value);
+        double x_value = (double)buildingsDimensions[buildingIndex].xLength / 2 + 1;
+        double z_value = (double)buildingsDimensions[buildingIndex].zWidth / 2 + 1;
+        arrow_x_p.transform.localPosition = new Vector3((float)x_value, 0, 0);
+        arrow_x_n.transform.localPosition = new Vector3((float)-x_value, 0, 0);
+        arrow_z_p.transform.localPosition = new Vector3(0, 0, (float)z_value);
+        arrow_z_n.transform.localPosition = new Vector3(0, 0, (float)-z_value);
     }
     //-----------------------------------------------------------------------------------------
 
