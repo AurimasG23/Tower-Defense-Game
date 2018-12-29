@@ -223,22 +223,44 @@ public class SelectAndMove : MonoBehaviour
 
     private void Renew()
     {
-        buildingsLocations[0] = new BuildingLocation(5.5f, 0, 5.5f);
-        buildingsLocations[1] = new BuildingLocation(-5.5f, 0, 5.5f);
-        buildingsLocations[2] = new BuildingLocation(-5, 0, -5);
-        buildingsLocations[3] = new BuildingLocation(5, 0, -5);
+        buildingsLocations[0] = new BuildingLocation(10.5f, 0, 10.5f);
+        buildingsLocations[1] = new BuildingLocation(-10.5f, 0, 10.5f);
+        buildingsLocations[2] = new BuildingLocation(-10, 0, -10);
+        buildingsLocations[3] = new BuildingLocation(10, 0, -10);
 
         for(int i = 0; i < gridDimension; i++)
         {
             for (int j = 0; j < gridDimension; j++)
             {
-                base_squares[i, j] = -1;
+                if (j >= 14 && j <= 25)
+                {
+                    base_squares[i, j] = -2; // kelias ir sienos
+                }
+                else
+                {
+                    base_squares[i, j] = -1;
+                }              
             }
         }
 
-        base_squares[25, 25] = 0;
-        base_squares[14, 25] = 1;
-        Vector2[,] buildingSquares = FindBuildingSquares(2, buildingsLocations[2]);
+        Vector2[,] buildingSquares = FindBuildingSquares(0, buildingsLocations[0]);
+        for (int i = 0; i < buildingsDimensions[0].zWidth; i++)
+        {
+            for (int j = 0; j < buildingsDimensions[0].xLength; j++)
+            {
+                base_squares[(int)buildingSquares[i, j].x, (int)buildingSquares[i, j].y] = 0;
+                Debug.Log(((int)buildingSquares[i, j].x).ToString() + "     " + ((int)buildingSquares[i, j].y).ToString());
+            }
+        }
+        buildingSquares = FindBuildingSquares(1, buildingsLocations[1]);
+        for (int i = 0; i < buildingsDimensions[1].zWidth; i++)
+        {
+            for (int j = 0; j < buildingsDimensions[1].xLength; j++)
+            {
+                base_squares[(int)buildingSquares[i, j].x, (int)buildingSquares[i, j].y] = 1;
+            }
+        }
+        buildingSquares = FindBuildingSquares(2, buildingsLocations[2]);
         for (int i = 0; i < buildingsDimensions[2].zWidth; i++)
         {
             for (int j = 0; j < buildingsDimensions[2].xLength; j++)

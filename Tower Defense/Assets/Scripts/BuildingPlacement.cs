@@ -160,8 +160,8 @@ public class BuildingPlacement : MonoBehaviour
             }
         }
 
-        float boundsX = 20 - (selectedBuildingDimensions.xLength / 2) + 1;
-        float boundsZ = 20 - (selectedBuildingDimensions.zWidth / 2) + 1;
+        double boundsX = 20 - ((double)selectedBuildingDimensions.xLength / 2) + 1;
+        double boundsZ = 20 - ((double)selectedBuildingDimensions.zWidth / 2) + 1;
         if (xValue > -boundsX && xValue < boundsX && zValue > -boundsZ && zValue < boundsZ)
         {
             selectedBuilding.position = new Vector3(xValue, 0, zValue);  //judinamo objekto pozicija
