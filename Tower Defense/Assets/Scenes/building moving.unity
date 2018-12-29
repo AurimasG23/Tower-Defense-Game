@@ -490,7 +490,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 46745134ec4767a46ad507c52dbede2a, type: 2}
+  - {fileID: 2100000, guid: d97f1e353d4f4da46abce29e3ecb15f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2442,6 +2442,14 @@ Prefab:
       propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: 49352ccf84e3c9448971d18d7a9b5626, type: 2}
+    - target: {fileID: 2300000, guid: 9c2157b081b6f064b8a453dc30410a1b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5f5b60f2842023f429a6bdacf31458c7, type: 2}
+    - target: {fileID: 2300000, guid: 9c2157b081b6f064b8a453dc30410a1b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 578e95c83bb2e094e8dc5061fd1ad43c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c2157b081b6f064b8a453dc30410a1b, type: 3}
   m_IsPrefabAsset: 0
@@ -2497,7 +2505,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 46745134ec4767a46ad507c52dbede2a, type: 2}
+  - {fileID: 2100000, guid: d97f1e353d4f4da46abce29e3ecb15f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3538,8 +3546,8 @@ MonoBehaviour:
   - xLength: 4
     zWidth: 4
   selectedBuildingIndex: 0
-  red: {fileID: 2100000, guid: 9030d28b9210198469fbab0b07b6d5a2, type: 2}
-  green: {fileID: 2100000, guid: 46745134ec4767a46ad507c52dbede2a, type: 2}
+  red: {fileID: 2100000, guid: a6abf1067aa4c364cad4269d34051c24, type: 2}
+  green: {fileID: 2100000, guid: d97f1e353d4f4da46abce29e3ecb15f2, type: 2}
   selectedBuildingArrows: {fileID: 390196844}
   arrow_x_p: {fileID: 401827505}
   arrow_x_n: {fileID: 1612212241}
