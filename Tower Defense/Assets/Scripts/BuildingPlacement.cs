@@ -61,7 +61,8 @@ public class BuildingPlacement : MonoBehaviour
             RaycastHit hitInfo;
             if(Physics.Raycast(ray, out hitInfo))
             {
-                if (hitInfo.point.x > -22 && hitInfo.point.x < 22 && hitInfo.point.z > -22 && hitInfo.point.z < 22)
+                if (hitInfo.point.x > (-SelectAndMove.baseGridDimensionX_n - 2) && hitInfo.point.x < (SelectAndMove.baseGridDimensionX_p + 2) && 
+                    hitInfo.point.z > (-SelectAndMove.baseGridDimensionZ_n - 2) && hitInfo.point.z < (SelectAndMove.baseGridDimensionZ_p + 2))
                 {
                     SetBuildingPosition(hitInfo.point.x, hitInfo.point.z);
                 }
@@ -160,9 +161,12 @@ public class BuildingPlacement : MonoBehaviour
             }
         }
 
-        double boundsX = 20 - ((double)selectedBuildingDimensions.xLength / 2) + 1;
-        double boundsZ = 20 - ((double)selectedBuildingDimensions.zWidth / 2) + 1;
-        if (xValue > -boundsX && xValue < boundsX && zValue > -boundsZ && zValue < boundsZ)
+        double boundsX_p = SelectAndMove.baseGridDimensionX_p - ((double)selectedBuildingDimensions.xLength / 2);
+        Debug.Log(boundsX_p.ToString());
+        double boundsX_n = SelectAndMove.baseGridDimensionX_n - ((double)selectedBuildingDimensions.xLength / 2);
+        double boundsZ_p = SelectAndMove.baseGridDimensionZ_p - ((double)selectedBuildingDimensions.zWidth / 2);
+        double boundsZ_n = SelectAndMove.baseGridDimensionZ_n - ((double)selectedBuildingDimensions.zWidth / 2);
+        if (xValue >= -boundsX_n && xValue <= boundsX_p && zValue >= -boundsZ_n && zValue <= boundsZ_p)
         {
             selectedBuilding.position = new Vector3(xValue, 0, zValue);  //judinamo objekto pozicija
             SelectAndMove.instance.EmptySpot(SelectAndMove.instance.selectedBuildingIndex); // tikrinam ar esamoj objekto pozicijoj nera kito objekto

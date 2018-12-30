@@ -62,11 +62,35 @@ public class DataFileHandler
     }
     //-------------------------------------------------------------------------------------------------------------------------------------
 
-    public static int[,] ReadBaseSquares(string dataFile, int gridDimension)
+    //public static int[,] ReadBaseSquares(string dataFile, int gridDimension)
+    //{
+    //    string dataPath = Application.persistentDataPath;
+    //    string FilePath = Path.Combine(dataPath, dataFile + ".txt");
+    //    int[,] squares = new int[gridDimension, gridDimension];
+    //    if (File.Exists(FilePath))
+    //    {
+    //        StreamReader reader = new StreamReader(new FileStream(FilePath, FileMode.Open));
+    //        int i = 0;
+    //        string line = reader.ReadLine();
+    //        while (line != null)
+    //        {
+    //            string[] values = line.Split(' ');
+    //            for(int j = 0; j < gridDimension; j++)
+    //            {
+    //                squares[i, j] = int.Parse(values[j]);
+    //            }               
+    //            line = reader.ReadLine();
+    //            i++;
+    //        }
+    //        reader.Close();
+    //    }
+    //    return squares;
+    //}
+    public static int[,] ReadBaseSquares(string dataFile, int dimension_X, int dimension_Z)
     {
         string dataPath = Application.persistentDataPath;
         string FilePath = Path.Combine(dataPath, dataFile + ".txt");
-        int[,] squares = new int[gridDimension, gridDimension];
+        int[,] squares = new int[dimension_Z, dimension_X];
         if (File.Exists(FilePath))
         {
             StreamReader reader = new StreamReader(new FileStream(FilePath, FileMode.Open));
@@ -75,10 +99,10 @@ public class DataFileHandler
             while (line != null)
             {
                 string[] values = line.Split(' ');
-                for(int j = 0; j < gridDimension; j++)
+                for (int j = 0; j < dimension_X; j++)
                 {
                     squares[i, j] = int.Parse(values[j]);
-                }               
+                }
                 line = reader.ReadLine();
                 i++;
             }
@@ -87,43 +111,92 @@ public class DataFileHandler
         return squares;
     }
 
-    public static void ChangeBaseSquares(string dataFile, int[,] squares, int dimension)
+    //public static void ChangeBaseSquares(string dataFile, int[,] squares, int dimension)
+    //{
+    //    string dataPath = Application.persistentDataPath;
+    //    string FilePath = Path.Combine(dataPath, dataFile + ".txt");
+    //    if (squares != null)
+    //    {
+    //        StreamWriter writer = new StreamWriter(new FileStream(FilePath, FileMode.Create));
+    //        for (int i = 0; i < dimension; i++)
+    //        {
+    //            for(int j = 0; j < dimension; j++)
+    //            {
+    //                if(j < dimension - 1)
+    //                {
+    //                    writer.Write(squares[i, j].ToString() + " ");
+    //                }
+    //                else
+    //                {
+    //                    writer.WriteLine(squares[i, j].ToString());
+    //                }                   
+    //            }               
+    //        }
+    //        writer.Close();
+    //    }
+    //}
+    public static void ChangeBaseSquares(string dataFile, int[,] squares, int dimension_X, int dimension_Z)
     {
         string dataPath = Application.persistentDataPath;
         string FilePath = Path.Combine(dataPath, dataFile + ".txt");
         if (squares != null)
         {
             StreamWriter writer = new StreamWriter(new FileStream(FilePath, FileMode.Create));
-            for (int i = 0; i < dimension; i++)
+            for (int i = 0; i < dimension_Z; i++)
             {
-                for(int j = 0; j < dimension; j++)
+                for (int j = 0; j < dimension_X; j++)
                 {
-                    if(j < dimension - 1)
+                    if (j < dimension_X - 1)
                     {
                         writer.Write(squares[i, j].ToString() + " ");
                     }
                     else
                     {
                         writer.WriteLine(squares[i, j].ToString());
-                    }                   
-                }               
+                    }
+                }
             }
             writer.Close();
         }
     }
 
-    public static void SetBuildingsSquaresOnFirstLaunch(string dataFile, int dimension)
+
+    //public static void SetBuildingsSquaresOnFirstLaunch(string dataFile, int dimension)
+    //{
+    //    string dataPath = Application.persistentDataPath;
+    //    string FilePath = Path.Combine(dataPath, dataFile + ".txt");
+    //    if (!File.Exists(FilePath))
+    //    {
+    //        StreamWriter writer = new StreamWriter(new FileStream(FilePath, FileMode.Create));
+    //        for (int i = 0; i < dimension; i++)
+    //        {
+    //            for(int j = 0; j < dimension; j++)
+    //            {
+    //                if (j < dimension - 1)
+    //                {
+    //                    writer.Write("-1 ");
+    //                }
+    //                else
+    //                {
+    //                    writer.WriteLine("-1");
+    //                }
+    //            }
+    //        }
+    //        writer.Close();
+    //    }
+    //}
+    public static void SetBuildingsSquaresOnFirstLaunch(string dataFile, int dimension_X, int dimension_Z)
     {
         string dataPath = Application.persistentDataPath;
         string FilePath = Path.Combine(dataPath, dataFile + ".txt");
         if (!File.Exists(FilePath))
         {
             StreamWriter writer = new StreamWriter(new FileStream(FilePath, FileMode.Create));
-            for (int i = 0; i < dimension; i++)
+            for (int i = 0; i < dimension_Z; i++)
             {
-                for(int j = 0; j < dimension; j++)
+                for (int j = 0; j < dimension_X; j++)
                 {
-                    if (j < dimension - 1)
+                    if (j < dimension_X - 1)
                     {
                         writer.Write("-1 ");
                     }

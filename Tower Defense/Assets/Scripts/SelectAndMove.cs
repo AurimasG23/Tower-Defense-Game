@@ -5,8 +5,11 @@ using UnityEngine;
 public class SelectAndMove : MonoBehaviour
 {
     //------------------------------------------------------------------
-    private static int numberOfBuildings = 4;           //pastatų kiekis
-    private static int gridDimension = 40;              //bazės pagrindo matmenys
+    public static int numberOfBuildings = 4;           //pastatų kiekis
+    public static int baseGridDimensionX_p = 30;       //langeliu kiekis x teigiamoj pusej
+    public static int baseGridDimensionX_n = 40;       //langeliu kiekis x neigiamoj pusej
+    public static int baseGridDimensionZ_p = 20;       //langeliu kiekis z teigiamoj pusej
+    public static int baseGridDimensionZ_n = 20;       //langeliu kiekis z neigiamoj pusej
     //------------------------------------------------------------------
 
     public GameObject[] buildings;                      //pastatai
@@ -17,7 +20,8 @@ public class SelectAndMove : MonoBehaviour
     private BuildingLocation[] buildingsLocations = new BuildingLocation[numberOfBuildings];    // pastatų pozicijos
     private string buildingLocationsDataFile = "buildingLocations";                             // pastatų pozicijų duomenų failas
 
-    private int[,] base_squares = new int[gridDimension, gridDimension];        // bazės pagrindo langeliu matrica, kur saugomi pastatų užimami plotai
+    //private int[,] base_squares = new int[gridDimension, gridDimension];        // bazės pagrindo langeliu matrica, kur saugomi pastatų užimami plotai
+    private int[,] base_squares = new int[baseGridDimensionZ_p + baseGridDimensionZ_n, baseGridDimensionX_p + baseGridDimensionX_n];        // bazės pagrindo langeliu matrica, kur saugomi pastatų užimami plotai
     private string baseSquaresDataFile = "baseSquares";                         // bazės pagrindo langelių duomenų failas
 
     private MeshRenderer[] buildingBasisMeshRenderers = new MeshRenderer[numberOfBuildings];  // pastatų pagrindų mesh redereriai
@@ -50,8 +54,10 @@ public class SelectAndMove : MonoBehaviour
             buildings[i].transform.position = new Vector3(buildingsLocations[i].x, buildingsLocations[i].y, buildingsLocations[i].z);
         }
 
-        DataFileHandler.SetBuildingsSquaresOnFirstLaunch(baseSquaresDataFile, gridDimension);
-        base_squares = DataFileHandler.ReadBaseSquares(baseSquaresDataFile, gridDimension);
+        //DataFileHandler.SetBuildingsSquaresOnFirstLaunch(baseSquaresDataFile, gridDimension);
+        DataFileHandler.SetBuildingsSquaresOnFirstLaunch(baseSquaresDataFile, baseGridDimensionX_p + baseGridDimensionX_n, baseGridDimensionZ_p + baseGridDimensionZ_n);
+        //base_squares = DataFileHandler.ReadBaseSquares(baseSquaresDataFile, gridDimension);
+        base_squares = DataFileHandler.ReadBaseSquares(baseSquaresDataFile, baseGridDimensionX_p + baseGridDimensionX_n, baseGridDimensionZ_p + baseGridDimensionZ_n);
 
         selectedBuildingArrows.transform.position = new Vector3(0, -100, 0);
     }
@@ -110,7 +116,8 @@ public class SelectAndMove : MonoBehaviour
     {
         //Renew();
         DataFileHandler.ChangeBuildingLocations(buildingLocationsDataFile, buildingsLocations, numberOfBuildings);
-        DataFileHandler.ChangeBaseSquares(baseSquaresDataFile, base_squares, gridDimension);
+        //DataFileHandler.ChangeBaseSquares(baseSquaresDataFile, base_squares, gridDimension);
+        DataFileHandler.ChangeBaseSquares(baseSquaresDataFile, base_squares, baseGridDimensionX_p + baseGridDimensionX_n, baseGridDimensionZ_p + baseGridDimensionZ_n);
     }
 
     private Vector2[,] FindBuildingSquares(int biuldingIndex, BuildingLocation buildingLocation)
@@ -142,20 +149,24 @@ public class SelectAndMove : MonoBehaviour
                 float x = (float)startX + j + 1;
                 if(x > 0)
                 {
-                    squares[i, j].x = gridDimension/2 + x - 1;
+                    //squares[i, j].x = gridDimension/2 + x - 1;
+                    squares[i, j].x = baseGridDimensionX_n + x - 1;
                 }
                 else
                 {
-                    squares[i, j].x = gridDimension/2 + x;
+                    //squares[i, j].x = gridDimension / 2 + x;
+                    squares[i, j].x = baseGridDimensionX_n + x;
                 }
                 float z = (float)startZ + i + 1;
                 if(z > 0)
                 {
-                    squares[i, j].y = gridDimension/2 + z - 1;
+                    //squares[i, j].y = gridDimension/2 + z - 1;
+                    squares[i, j].y = baseGridDimensionZ_n + z - 1;
                 }
                 else
                 {
-                    squares[i, j].y = gridDimension/2 + z;
+                    //squares[i, j].y = gridDimension/2 + z;
+                    squares[i, j].y = baseGridDimensionZ_n + z;
                 }
             }
         }
@@ -170,8 +181,8 @@ public class SelectAndMove : MonoBehaviour
         {
             for (int j = 0; j < buildingsDimensions[buildingIndex].xLength; j++)
             {
-                if(base_squares[(int)buildingSquares[i,j].x, (int)buildingSquares[i, j].y] != -1 &&
-                    base_squares[(int)buildingSquares[i, j].x, (int)buildingSquares[i, j].y] != buildingIndex)
+                if(base_squares[(int)buildingSquares[i,j].y, (int)buildingSquares[i, j].x] != -1 &&
+                    base_squares[(int)buildingSquares[i, j].y, (int)buildingSquares[i, j].x] != buildingIndex)
                 {
                     buildingBasisMeshRenderers[buildingIndex].material = red;
                     return false;
@@ -190,7 +201,7 @@ public class SelectAndMove : MonoBehaviour
         {
             for (int j = 0; j < buildingsDimensions[buildingIndex].xLength; j++)
             {
-                base_squares[(int)buildingSquares[i, j].x, (int)buildingSquares[i, j].y] = buildingIndex;
+                base_squares[(int)buildingSquares[i, j].y, (int)buildingSquares[i, j].x] = buildingIndex;
             }
         }
     }
@@ -202,9 +213,9 @@ public class SelectAndMove : MonoBehaviour
         {
             for (int j = 0; j < buildingsDimensions[buildingIndex].xLength; j++)
             {
-                if(base_squares[(int)squaresToClear[i, j].x, (int)squaresToClear[i, j].y] == buildingIndex)
+                if(base_squares[(int)squaresToClear[i, j].y, (int)squaresToClear[i, j].x] == buildingIndex)
                 {
-                    base_squares[(int)squaresToClear[i, j].x, (int)squaresToClear[i, j].y] = -1;
+                    base_squares[(int)squaresToClear[i, j].y, (int)squaresToClear[i, j].x] = -1;
                 }              
             }
         }
@@ -228,18 +239,32 @@ public class SelectAndMove : MonoBehaviour
         buildingsLocations[2] = new BuildingLocation(-10, 0, -10);
         buildingsLocations[3] = new BuildingLocation(10, 0, -10);
 
-        for(int i = 0; i < gridDimension; i++)
+        //for(int i = 0; i < gridDimension; i++)
+        //{
+        //    for (int j = 0; j < gridDimension; j++)
+        //    {
+        //        if (i >= 14 && i <= 25)
+        //        {
+        //            base_squares[i, j] = -2; // kelias ir sienos
+        //        }
+        //        else
+        //        {
+        //            base_squares[i, j] = -1;
+        //        }              
+        //    }
+        //}
+        for (int i = 0; i < baseGridDimensionZ_p + baseGridDimensionZ_n; i++)
         {
-            for (int j = 0; j < gridDimension; j++)
+            for (int j = 0; j < baseGridDimensionX_p + baseGridDimensionX_n; j++)
             {
-                if (j >= 14 && j <= 25)
+                if (i >= 14 && i <= 25)
                 {
                     base_squares[i, j] = -2; // kelias ir sienos
                 }
                 else
                 {
                     base_squares[i, j] = -1;
-                }              
+                }
             }
         }
 
@@ -248,8 +273,7 @@ public class SelectAndMove : MonoBehaviour
         {
             for (int j = 0; j < buildingsDimensions[0].xLength; j++)
             {
-                base_squares[(int)buildingSquares[i, j].x, (int)buildingSquares[i, j].y] = 0;
-                Debug.Log(((int)buildingSquares[i, j].x).ToString() + "     " + ((int)buildingSquares[i, j].y).ToString());
+                base_squares[(int)buildingSquares[i, j].y, (int)buildingSquares[i, j].x] = 0;               
             }
         }
         buildingSquares = FindBuildingSquares(1, buildingsLocations[1]);
@@ -257,7 +281,7 @@ public class SelectAndMove : MonoBehaviour
         {
             for (int j = 0; j < buildingsDimensions[1].xLength; j++)
             {
-                base_squares[(int)buildingSquares[i, j].x, (int)buildingSquares[i, j].y] = 1;
+                base_squares[(int)buildingSquares[i, j].y, (int)buildingSquares[i, j].x] = 1;
             }
         }
         buildingSquares = FindBuildingSquares(2, buildingsLocations[2]);
@@ -265,7 +289,7 @@ public class SelectAndMove : MonoBehaviour
         {
             for (int j = 0; j < buildingsDimensions[2].xLength; j++)
             {
-                base_squares[(int)buildingSquares[i, j].x, (int)buildingSquares[i, j].y] = 2;
+                base_squares[(int)buildingSquares[i, j].y, (int)buildingSquares[i, j].x] = 2;
             }
         }
         buildingSquares = FindBuildingSquares(3, buildingsLocations[3]);
@@ -273,7 +297,7 @@ public class SelectAndMove : MonoBehaviour
         {
             for (int j = 0; j < buildingsDimensions[3].xLength; j++)
             {
-                base_squares[(int)buildingSquares[i, j].x, (int)buildingSquares[i, j].y] = 3;
+                base_squares[(int)buildingSquares[i, j].y, (int)buildingSquares[i, j].x] = 3;
             }
         }
     }
