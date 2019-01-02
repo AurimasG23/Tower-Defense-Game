@@ -127,19 +127,19 @@ public class SelectAndMove : MonoBehaviour
         double startZ = 0;
         if(buildingLocation.x > 0)
         {
-            startX = buildingLocation.x - (buildingsDimensions[biuldingIndex].xLength / 2);
+            startX = (double)buildingLocation.x - ((double)buildingsDimensions[biuldingIndex].xLength / 2);
         }
         else
         {
-            startX = buildingLocation.x - (buildingsDimensions[biuldingIndex].xLength / 2) - 1;
+            startX = (double)buildingLocation.x - ((double)buildingsDimensions[biuldingIndex].xLength / 2) - 1;
         }      
         if(buildingLocation.z > 0)
         {
-            startZ = buildingLocation.z - (buildingsDimensions[biuldingIndex].zWidth / 2);
+            startZ = (double)buildingLocation.z - ((double)buildingsDimensions[biuldingIndex].zWidth / 2);
         }
         else
         {
-            startZ = buildingLocation.z - (buildingsDimensions[biuldingIndex].zWidth / 2) - 1;
+            startZ = (double)buildingLocation.z - ((double)buildingsDimensions[biuldingIndex].zWidth / 2) - 1;
         }
         
         for (int i = 0; i < buildingsDimensions[biuldingIndex].zWidth;  i++)
@@ -236,8 +236,8 @@ public class SelectAndMove : MonoBehaviour
     {
         buildingsLocations[0] = new BuildingLocation(10.5f, 0, 10.5f);
         buildingsLocations[1] = new BuildingLocation(-10.5f, 0, 10.5f);
-        buildingsLocations[2] = new BuildingLocation(-10, 0, -10);
-        buildingsLocations[3] = new BuildingLocation(10, 0, -10);
+        buildingsLocations[2] = new BuildingLocation(-10.5f, 0, -10.5f);
+        buildingsLocations[3] = new BuildingLocation(10.5f, 0, -10.5f);
 
         //for(int i = 0; i < gridDimension; i++)
         //{
