@@ -1,0 +1,217 @@
+fileFormatVersion: 2
+guid: 5cb7d7396b36f394286df27a2cb7fa25
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: tvora.001
+    100004: tvora.002
+    100006: tvora.003
+    100008: tvora.004
+    100010: tvora.005
+    100012: tvora.006
+    100014: tvora.007
+    100016: tvora.008
+    100018: tvora.009
+    100020: tvora.010
+    100022: tvora.011
+    100024: tvora.012
+    100026: tvora.013
+    100028: tvora.015
+    100030: tvora.016
+    100032: tvora.017
+    100034: tvora.018
+    100036: tvora.019
+    100038: tvora.020
+    100040: tvora.021
+    100042: tvora.022
+    100044: tvora.023
+    100046: tvora.024
+    100048: tvora.025
+    100050: tvora_lenkta
+    400000: //RootNode
+    400002: tvora.001
+    400004: tvora.002
+    400006: tvora.003
+    400008: tvora.004
+    400010: tvora.005
+    400012: tvora.006
+    400014: tvora.007
+    400016: tvora.008
+    400018: tvora.009
+    400020: tvora.010
+    400022: tvora.011
+    400024: tvora.012
+    400026: tvora.013
+    400028: tvora.015
+    400030: tvora.016
+    400032: tvora.017
+    400034: tvora.018
+    400036: tvora.019
+    400038: tvora.020
+    400040: tvora.021
+    400042: tvora.022
+    400044: tvora.023
+    400046: tvora.024
+    400048: tvora.025
+    400050: tvora_lenkta
+    2100000: siena.001
+    2100002: siena
+    2300000: tvora.001
+    2300002: tvora.002
+    2300004: tvora.003
+    2300006: tvora.004
+    2300008: tvora.005
+    2300010: tvora.006
+    2300012: tvora.007
+    2300014: tvora.008
+    2300016: tvora.009
+    2300018: tvora.010
+    2300020: tvora.011
+    2300022: tvora.012
+    2300024: tvora.013
+    2300026: tvora.015
+    2300028: tvora.016
+    2300030: tvora.017
+    2300032: tvora.018
+    2300034: tvora.019
+    2300036: tvora.020
+    2300038: tvora.021
+    2300040: tvora.022
+    2300042: tvora.023
+    2300044: tvora.024
+    2300046: tvora.025
+    2300048: tvora_lenkta
+    3300000: tvora.001
+    3300002: tvora.002
+    3300004: tvora.003
+    3300006: tvora.004
+    3300008: tvora.005
+    3300010: tvora.006
+    3300012: tvora.007
+    3300014: tvora.008
+    3300016: tvora.009
+    3300018: tvora.010
+    3300020: tvora.011
+    3300022: tvora.012
+    3300024: tvora.013
+    3300026: tvora.015
+    3300028: tvora.016
+    3300030: tvora.017
+    3300032: tvora.018
+    3300034: tvora.019
+    3300036: tvora.020
+    3300038: tvora.021
+    3300040: tvora.022
+    3300042: tvora.023
+    3300044: tvora.024
+    3300046: tvora.025
+    3300048: tvora_lenkta
+    4300000: tvora.025
+    4300002: tvora.024
+    4300004: tvora.023
+    4300006: tvora.022
+    4300008: tvora.021
+    4300010: tvora.020
+    4300012: tvora.019
+    4300014: tvora.018
+    4300016: tvora.017
+    4300018: tvora.016
+    4300020: tvora.015
+    4300022: tvora.013
+    4300024: tvora.012
+    4300026: tvora.011
+    4300028: tvora.010
+    4300030: tvora.009
+    4300032: tvora.008
+    4300034: tvora.007
+    4300036: tvora.006
+    4300038: tvora.005
+    4300040: tvora.004
+    4300042: tvora.003
+    4300044: tvora.002
+    4300046: tvora.001
+    4300048: tvora_lenkta
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
