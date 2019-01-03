@@ -236,8 +236,8 @@ public class SelectAndMove : MonoBehaviour
     {
         buildingsLocations[0] = new BuildingLocation(10.5f, 0, 10.5f);
         buildingsLocations[1] = new BuildingLocation(-10.5f, 0, 10.5f);
-        buildingsLocations[2] = new BuildingLocation(-10.5f, 0, -10.5f);
-        buildingsLocations[3] = new BuildingLocation(10.5f, 0, -10.5f);
+        buildingsLocations[2] = new BuildingLocation(-10f, 0, -10f);
+        buildingsLocations[3] = new BuildingLocation(10f, 0, -10f);
 
         //for(int i = 0; i < gridDimension; i++)
         //{
