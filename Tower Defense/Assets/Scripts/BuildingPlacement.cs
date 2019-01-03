@@ -162,7 +162,6 @@ public class BuildingPlacement : MonoBehaviour
         }
 
         double boundsX_p = SelectAndMove.baseGridDimensionX_p - ((double)selectedBuildingDimensions.xLength / 2);
-        Debug.Log(boundsX_p.ToString());
         double boundsX_n = SelectAndMove.baseGridDimensionX_n - ((double)selectedBuildingDimensions.xLength / 2);
         double boundsZ_p = SelectAndMove.baseGridDimensionZ_p - ((double)selectedBuildingDimensions.zWidth / 2);
         double boundsZ_n = SelectAndMove.baseGridDimensionZ_n - ((double)selectedBuildingDimensions.zWidth / 2);

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectAndMove : MonoBehaviour
 {
@@ -33,6 +34,12 @@ public class SelectAndMove : MonoBehaviour
     public GameObject arrow_x_n;
     public GameObject arrow_z_p;
     public GameObject arrow_z_n;
+
+    public Text[] buildingSquares0;
+    public Text[] buildingSquares1;
+    public Text[] buildingSquares2;
+    public Text[] buildingSquares3;
+    public Text[] buildingSquares4;
 
     public static SelectAndMove instance;
 	// Use this for initialization
@@ -116,7 +123,6 @@ public class SelectAndMove : MonoBehaviour
     {
         //Renew();
         DataFileHandler.ChangeBuildingLocations(buildingLocationsDataFile, buildingsLocations, numberOfBuildings);
-        //DataFileHandler.ChangeBaseSquares(baseSquaresDataFile, base_squares, gridDimension);
         DataFileHandler.ChangeBaseSquares(baseSquaresDataFile, base_squares, baseGridDimensionX_p + baseGridDimensionX_n, baseGridDimensionZ_p + baseGridDimensionZ_n);
     }
 
@@ -131,7 +137,8 @@ public class SelectAndMove : MonoBehaviour
         }
         else
         {
-            startX = (double)buildingLocation.x - ((double)buildingsDimensions[biuldingIndex].xLength / 2) - 1;
+            //startX = (double)buildingLocation.x - ((double)buildingsDimensions[biuldingIndex].xLength / 2) - 1;
+            startX = (double)buildingLocation.x - ((double)buildingsDimensions[biuldingIndex].xLength / 2);
         }      
         if(buildingLocation.z > 0)
         {
@@ -139,34 +146,55 @@ public class SelectAndMove : MonoBehaviour
         }
         else
         {
-            startZ = (double)buildingLocation.z - ((double)buildingsDimensions[biuldingIndex].zWidth / 2) - 1;
+            //startZ = (double)buildingLocation.z - ((double)buildingsDimensions[biuldingIndex].zWidth / 2) - 1;
+            startZ = (double)buildingLocation.z - ((double)buildingsDimensions[biuldingIndex].zWidth / 2);
         }
         
         for (int i = 0; i < buildingsDimensions[biuldingIndex].zWidth;  i++)
         {
             for (int j = 0; j < buildingsDimensions[biuldingIndex].xLength; j++)
             {
-                float x = (float)startX + j + 1;
-                if(x > 0)
+                //float x = (float)startX + j + 1;
+                //if(x > 0)
+                //{
+                //    squares[i, j].x = baseGridDimensionX_n + x - 1;
+                //}
+                //else
+                //{
+                //    squares[i, j].x = baseGridDimensionX_n + x;
+                //}
+                //float z = (float)startZ + i + 1;
+                //if(z > 0)
+                //{
+                //    squares[i, j].y = baseGridDimensionZ_n + z - 1;
+                //}
+                //else
+                //{
+                //    squares[i, j].y = baseGridDimensionZ_n + z;
+                //}                
+                
+                squares[i, j].x = baseGridDimensionX_n + (float)startX;                
+                squares[i, j].y = baseGridDimensionZ_n + (float)startZ;
+               
+               if(i==0)
                 {
-                    //squares[i, j].x = gridDimension/2 + x - 1;
-                    squares[i, j].x = baseGridDimensionX_n + x - 1;
+                    buildingSquares0[j].text = "y=" + squares[i, j].y.ToString() + "\n" + "x=" + squares[i, j].x.ToString();
                 }
-                else
+               else if(i==1)
                 {
-                    //squares[i, j].x = gridDimension / 2 + x;
-                    squares[i, j].x = baseGridDimensionX_n + x;
+                    buildingSquares1[j].text = "y=" + squares[i, j].y.ToString() + "\n" + "x=" + squares[i, j].x.ToString();
                 }
-                float z = (float)startZ + i + 1;
-                if(z > 0)
+                else if (i == 2)
                 {
-                    //squares[i, j].y = gridDimension/2 + z - 1;
-                    squares[i, j].y = baseGridDimensionZ_n + z - 1;
+                    buildingSquares2[j].text = "y=" + squares[i, j].y.ToString() + "\n" + "x=" + squares[i, j].x.ToString();
                 }
-                else
+                else if (i == 3)
                 {
-                    //squares[i, j].y = gridDimension/2 + z;
-                    squares[i, j].y = baseGridDimensionZ_n + z;
+                    buildingSquares3[j].text = "y=" + squares[i, j].y.ToString() + "\n" + "x=" + squares[i, j].x.ToString();
+                }
+                else if (i == 4)
+                {
+                    buildingSquares4[j].text = "y=" + squares[i, j].y.ToString() + "\n" + "x=" + squares[i, j].x.ToString();
                 }
             }
         }
@@ -236,23 +264,9 @@ public class SelectAndMove : MonoBehaviour
     {
         buildingsLocations[0] = new BuildingLocation(10.5f, 0, 10.5f);
         buildingsLocations[1] = new BuildingLocation(-10.5f, 0, 10.5f);
-        buildingsLocations[2] = new BuildingLocation(-10f, 0, -10f);
-        buildingsLocations[3] = new BuildingLocation(10f, 0, -10f);
+        buildingsLocations[2] = new BuildingLocation(-10.5f, 0, -10.5f);
+        buildingsLocations[3] = new BuildingLocation(10.5f, 0, -10.5f);
 
-        //for(int i = 0; i < gridDimension; i++)
-        //{
-        //    for (int j = 0; j < gridDimension; j++)
-        //    {
-        //        if (i >= 14 && i <= 25)
-        //        {
-        //            base_squares[i, j] = -2; // kelias ir sienos
-        //        }
-        //        else
-        //        {
-        //            base_squares[i, j] = -1;
-        //        }              
-        //    }
-        //}
         for (int i = 0; i < baseGridDimensionZ_p + baseGridDimensionZ_n; i++)
         {
             for (int j = 0; j < baseGridDimensionX_p + baseGridDimensionX_n; j++)
@@ -268,37 +282,9 @@ public class SelectAndMove : MonoBehaviour
             }
         }
 
-        Vector2[,] buildingSquares = FindBuildingSquares(0, buildingsLocations[0]);
-        for (int i = 0; i < buildingsDimensions[0].zWidth; i++)
-        {
-            for (int j = 0; j < buildingsDimensions[0].xLength; j++)
-            {
-                base_squares[(int)buildingSquares[i, j].y, (int)buildingSquares[i, j].x] = 0;               
-            }
-        }
-        buildingSquares = FindBuildingSquares(1, buildingsLocations[1]);
-        for (int i = 0; i < buildingsDimensions[1].zWidth; i++)
-        {
-            for (int j = 0; j < buildingsDimensions[1].xLength; j++)
-            {
-                base_squares[(int)buildingSquares[i, j].y, (int)buildingSquares[i, j].x] = 1;
-            }
-        }
-        buildingSquares = FindBuildingSquares(2, buildingsLocations[2]);
-        for (int i = 0; i < buildingsDimensions[2].zWidth; i++)
-        {
-            for (int j = 0; j < buildingsDimensions[2].xLength; j++)
-            {
-                base_squares[(int)buildingSquares[i, j].y, (int)buildingSquares[i, j].x] = 2;
-            }
-        }
-        buildingSquares = FindBuildingSquares(3, buildingsLocations[3]);
-        for (int i = 0; i < buildingsDimensions[3].zWidth; i++)
-        {
-            for (int j = 0; j < buildingsDimensions[3].xLength; j++)
-            {
-                base_squares[(int)buildingSquares[i, j].y, (int)buildingSquares[i, j].x] = 3;
-            }
-        }
+        FillSquares(0, buildingsLocations[0]);
+        FillSquares(1, buildingsLocations[1]);
+        FillSquares(2, buildingsLocations[2]);      
+        FillSquares(3, buildingsLocations[3]);
     }
 }
