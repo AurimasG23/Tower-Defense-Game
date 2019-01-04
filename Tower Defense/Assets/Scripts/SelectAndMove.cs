@@ -85,6 +85,8 @@ public class SelectAndMove : MonoBehaviour
             }          
         }
         selectedBuildingIndex = index;
+        Canon_materials materials = buildings[selectedBuildingIndex].GetComponent(typeof(Canon_materials)) as Canon_materials;
+        materials.ShowOnTop();
         BuildingPlacement.instance.SetItem(buildings[selectedBuildingIndex], buildingsDimensions[selectedBuildingIndex]);
         SetArrowsLocalPosition(selectedBuildingIndex);
         selectedBuildingArrows.transform.position = new Vector3(buildingsLocations[selectedBuildingIndex].x, 0, buildingsLocations[selectedBuildingIndex].z);
