@@ -35,12 +35,6 @@ public class SelectAndMove : MonoBehaviour
     public GameObject arrow_z_p;
     public GameObject arrow_z_n;
 
-    public Text[] buildingSquares0;
-    public Text[] buildingSquares1;
-    public Text[] buildingSquares2;
-    public Text[] buildingSquares3;
-    public Text[] buildingSquares4;
-
     public static SelectAndMove instance;
 	// Use this for initialization
 	void Start ()
@@ -133,11 +127,10 @@ public class SelectAndMove : MonoBehaviour
         double startZ = 0;
         if(buildingLocation.x > 0)
         {
-            startX = (double)buildingLocation.x - ((double)buildingsDimensions[biuldingIndex].xLength / 2);
+            startX = (double)buildingLocation.x - ((double)buildingsDimensions[biuldingIndex].xLength / 2);            
         }
         else
         {
-            //startX = (double)buildingLocation.x - ((double)buildingsDimensions[biuldingIndex].xLength / 2) - 1;
             startX = (double)buildingLocation.x - ((double)buildingsDimensions[biuldingIndex].xLength / 2);
         }      
         if(buildingLocation.z > 0)
@@ -146,56 +139,15 @@ public class SelectAndMove : MonoBehaviour
         }
         else
         {
-            //startZ = (double)buildingLocation.z - ((double)buildingsDimensions[biuldingIndex].zWidth / 2) - 1;
             startZ = (double)buildingLocation.z - ((double)buildingsDimensions[biuldingIndex].zWidth / 2);
         }
-        
+
         for (int i = 0; i < buildingsDimensions[biuldingIndex].zWidth;  i++)
         {
             for (int j = 0; j < buildingsDimensions[biuldingIndex].xLength; j++)
-            {
-                //float x = (float)startX + j + 1;
-                //if(x > 0)
-                //{
-                //    squares[i, j].x = baseGridDimensionX_n + x - 1;
-                //}
-                //else
-                //{
-                //    squares[i, j].x = baseGridDimensionX_n + x;
-                //}
-                //float z = (float)startZ + i + 1;
-                //if(z > 0)
-                //{
-                //    squares[i, j].y = baseGridDimensionZ_n + z - 1;
-                //}
-                //else
-                //{
-                //    squares[i, j].y = baseGridDimensionZ_n + z;
-                //}                
-                
-                squares[i, j].x = baseGridDimensionX_n + (float)startX;                
-                squares[i, j].y = baseGridDimensionZ_n + (float)startZ;
-               
-               if(i==0)
-                {
-                    buildingSquares0[j].text = "y=" + squares[i, j].y.ToString() + "\n" + "x=" + squares[i, j].x.ToString();
-                }
-               else if(i==1)
-                {
-                    buildingSquares1[j].text = "y=" + squares[i, j].y.ToString() + "\n" + "x=" + squares[i, j].x.ToString();
-                }
-                else if (i == 2)
-                {
-                    buildingSquares2[j].text = "y=" + squares[i, j].y.ToString() + "\n" + "x=" + squares[i, j].x.ToString();
-                }
-                else if (i == 3)
-                {
-                    buildingSquares3[j].text = "y=" + squares[i, j].y.ToString() + "\n" + "x=" + squares[i, j].x.ToString();
-                }
-                else if (i == 4)
-                {
-                    buildingSquares4[j].text = "y=" + squares[i, j].y.ToString() + "\n" + "x=" + squares[i, j].x.ToString();
-                }
+            {              
+                squares[i, j].x = baseGridDimensionX_n + (float)startX + j;
+                squares[i, j].y = baseGridDimensionZ_n + (float)startZ + i;                         
             }
         }
         return squares;
