@@ -55,9 +55,7 @@ public class SelectAndMove : MonoBehaviour
             buildings[i].transform.position = new Vector3(buildingsLocations[i].x, buildingsLocations[i].y, buildingsLocations[i].z);
         }
 
-        //DataFileHandler.SetBuildingsSquaresOnFirstLaunch(baseSquaresDataFile, gridDimension);
         DataFileHandler.SetBuildingsSquaresOnFirstLaunch(baseSquaresDataFile, baseGridDimensionX_p + baseGridDimensionX_n, baseGridDimensionZ_p + baseGridDimensionZ_n);
-        //base_squares = DataFileHandler.ReadBaseSquares(baseSquaresDataFile, gridDimension);
         base_squares = DataFileHandler.ReadBaseSquares(baseSquaresDataFile, baseGridDimensionX_p + baseGridDimensionX_n, baseGridDimensionZ_p + baseGridDimensionZ_n);
 
         selectedBuildingArrows.transform.position = new Vector3(0, -100, 0);
