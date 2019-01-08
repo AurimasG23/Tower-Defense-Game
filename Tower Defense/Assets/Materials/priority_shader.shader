@@ -20,8 +20,9 @@ Shader "Custom/priority_shader" {
 			{
 				"Queue" = "Transparent"
 				"IgnoreProjector" = "True"
-				"RenderType" = "Transparent"
+				//"RenderType" = "Transparent"
 				"PreviewType" = "Plane"
+			 "RenderQueue"= "3250"
 			}
 
 			Stencil
@@ -34,9 +35,9 @@ Shader "Custom/priority_shader" {
 			}
 
 			Lighting Off
-			Cull Off
-			ZTest Off
-			ZWrite Off
+			//Cull Off
+			//ZTest Off
+			//ZWrite Off
 			Blend SrcAlpha OneMinusSrcAlpha
 			ColorMask[_ColorMask]
 
