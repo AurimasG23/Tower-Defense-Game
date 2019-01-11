@@ -6,6 +6,7 @@ using System.IO;
 public class DataFileHandler
 {
     //-------------------------------------------------------------------------------------------------
+    //nuskaito pastatų pozicijų duomenis
     public static BuildingLocation[] ReadBuildingLocations(string dataFile, int countOfBuildings)
     {
         string dataPath = Application.persistentDataPath;
@@ -31,6 +32,7 @@ public class DataFileHandler
         return locations;
     }
 
+    //Išsaugo pastatų pozicijų duomenis
     public static void ChangeBuildingLocations(string dataFile, BuildingLocation[] locations, int countOfBuildings)
     {
         string dataPath = Application.persistentDataPath;
@@ -46,11 +48,12 @@ public class DataFileHandler
         }
     }
 
+    //Pirmą kart įsijungus bazės statymą, nustato visų pastatų pozicijas į (0, -100, 0)
     public static void SetBuildingsLocationsOnFirstLaunch(string dataFile, int countOfBuildings)
     {
         string dataPath = Application.persistentDataPath;
         string FilePath = Path.Combine(dataPath, dataFile + ".txt");
-        if (!File.Exists(FilePath))
+        if (!File.Exists(FilePath)) // pirma kart paleidziant, failas neegzistuos, todėl bus sukurtas
         {
             StreamWriter writer = new StreamWriter(new FileStream(FilePath, FileMode.Create));
             for (int i = 0; i < countOfBuildings; i++)
@@ -61,31 +64,7 @@ public class DataFileHandler
         }
     }
     //-------------------------------------------------------------------------------------------------------------------------------------
-
-    //public static int[,] ReadBaseSquares(string dataFile, int gridDimension)
-    //{
-    //    string dataPath = Application.persistentDataPath;
-    //    string FilePath = Path.Combine(dataPath, dataFile + ".txt");
-    //    int[,] squares = new int[gridDimension, gridDimension];
-    //    if (File.Exists(FilePath))
-    //    {
-    //        StreamReader reader = new StreamReader(new FileStream(FilePath, FileMode.Open));
-    //        int i = 0;
-    //        string line = reader.ReadLine();
-    //        while (line != null)
-    //        {
-    //            string[] values = line.Split(' ');
-    //            for(int j = 0; j < gridDimension; j++)
-    //            {
-    //                squares[i, j] = int.Parse(values[j]);
-    //            }               
-    //            line = reader.ReadLine();
-    //            i++;
-    //        }
-    //        reader.Close();
-    //    }
-    //    return squares;
-    //}
+    //Nuskaito bazės pagrindo laukelių užpildymo duomenis
     public static int[,] ReadBaseSquares(string dataFile, int dimension_X, int dimension_Z)
     {
         string dataPath = Application.persistentDataPath;
@@ -111,30 +90,7 @@ public class DataFileHandler
         return squares;
     }
 
-    //public static void ChangeBaseSquares(string dataFile, int[,] squares, int dimension)
-    //{
-    //    string dataPath = Application.persistentDataPath;
-    //    string FilePath = Path.Combine(dataPath, dataFile + ".txt");
-    //    if (squares != null)
-    //    {
-    //        StreamWriter writer = new StreamWriter(new FileStream(FilePath, FileMode.Create));
-    //        for (int i = 0; i < dimension; i++)
-    //        {
-    //            for(int j = 0; j < dimension; j++)
-    //            {
-    //                if(j < dimension - 1)
-    //                {
-    //                    writer.Write(squares[i, j].ToString() + " ");
-    //                }
-    //                else
-    //                {
-    //                    writer.WriteLine(squares[i, j].ToString());
-    //                }                   
-    //            }               
-    //        }
-    //        writer.Close();
-    //    }
-    //}
+    // Atnaujina bazės pagrindo laukelių užpildymo duomenis
     public static void ChangeBaseSquares(string dataFile, int[,] squares, int dimension_X, int dimension_Z)
     {
         string dataPath = Application.persistentDataPath;
@@ -161,49 +117,42 @@ public class DataFileHandler
     }
 
 
-    //public static void SetBuildingsSquaresOnFirstLaunch(string dataFile, int dimension)
-    //{
-    //    string dataPath = Application.persistentDataPath;
-    //    string FilePath = Path.Combine(dataPath, dataFile + ".txt");
-    //    if (!File.Exists(FilePath))
-    //    {
-    //        StreamWriter writer = new StreamWriter(new FileStream(FilePath, FileMode.Create));
-    //        for (int i = 0; i < dimension; i++)
-    //        {
-    //            for(int j = 0; j < dimension; j++)
-    //            {
-    //                if (j < dimension - 1)
-    //                {
-    //                    writer.Write("-1 ");
-    //                }
-    //                else
-    //                {
-    //                    writer.WriteLine("-1");
-    //                }
-    //            }
-    //        }
-    //        writer.Close();
-    //    }
-    //}
+    // Pirmo paleidimo metu sužymi bazės pagrindo laukelius
+    //-1 reiškia kad laukelis tuščias
+    //-2 žymi kad ten yra kelias
     public static void SetBuildingsSquaresOnFirstLaunch(string dataFile, int dimension_X, int dimension_Z)
     {
         string dataPath = Application.persistentDataPath;
         string FilePath = Path.Combine(dataPath, dataFile + ".txt");
-        if (!File.Exists(FilePath))
+        if (!File.Exists(FilePath))  // pirma kart paleidziant, failas neegzistuos, todėl bus sukurtas
         {
             StreamWriter writer = new StreamWriter(new FileStream(FilePath, FileMode.Create));
             for (int i = 0; i < dimension_Z; i++)
             {
                 for (int j = 0; j < dimension_X; j++)
                 {
-                    if (j < dimension_X - 1)
+                    if (i >= 14 && i <= 25) // kelias
                     {
-                        writer.Write("-1 ");
+                        if (j < dimension_X - 1)
+                        {
+                            writer.Write("-2 ");
+                        }
+                        else
+                        {
+                            writer.WriteLine("-2");
+                        }
                     }
-                    else
+                    else // tušti langeliai
                     {
-                        writer.WriteLine("-1");
-                    }
+                        if (j < dimension_X - 1)
+                        {
+                            writer.Write("-1 ");
+                        }
+                        else
+                        {
+                            writer.WriteLine("-1");
+                        }
+                    }                   
                 }
             }
             writer.Close();
