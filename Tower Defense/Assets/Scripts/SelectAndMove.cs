@@ -69,8 +69,10 @@ public class SelectAndMove : MonoBehaviour
 	}
 
     //-----------------------------------------------------------------------------------------------------
-    public void selectBuilding(int index)
+    //Kvieciamas kai paspaudziama ant movables layer turincio pastato
+    public void SelectBuilding(int index)
     {
+
         if (selectedBuildingIndex != -1)
         {           
             if(EmptySpot(selectedBuildingIndex))
@@ -83,7 +85,9 @@ public class SelectAndMove : MonoBehaviour
             {
                 buildings[selectedBuildingIndex].transform.position = new Vector3(buildingsLocations[selectedBuildingIndex].x, buildingsLocations[selectedBuildingIndex].y, buildingsLocations[selectedBuildingIndex].z);
                 buildingBasisMeshRenderers[selectedBuildingIndex].material = green;
-            }          
+            }      
+            
+
         }
         selectedBuildingIndex = index;
 
@@ -98,6 +102,7 @@ public class SelectAndMove : MonoBehaviour
         selectedBuildingArrows.transform.position = new Vector3(buildingsLocations[selectedBuildingIndex].x, 0, buildingsLocations[selectedBuildingIndex].z);
     }
 
+    // Kvieciamas tik tada kai paspaudziama ant movables layer neturincio pastato
     public void DeselectBuildings()
     {
         if (selectedBuildingIndex != -1)

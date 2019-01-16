@@ -20,6 +20,6 @@ public class OnClick : MonoBehaviour
 
     public void SelectMe()
     {
-        SelectAndMove.instance.selectBuilding(index);
+        SelectAndMove.instance.SelectBuilding(index);
     }
 }
