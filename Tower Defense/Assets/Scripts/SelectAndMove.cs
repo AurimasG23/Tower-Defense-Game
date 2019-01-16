@@ -86,12 +86,14 @@ public class SelectAndMove : MonoBehaviour
             }          
         }
         selectedBuildingIndex = index;
-        //CanonManager canonManager = buildings[selectedBuildingIndex].GetComponent(typeof(CanonManager)) as CanonManager;
-        //if (canonManager != null)
-        //{
-        //    canonManager.BringNearer();
-        //}
+
+        CanonManager canonManager = buildings[selectedBuildingIndex].GetComponent(typeof(CanonManager)) as CanonManager;
+        if (canonManager != null)
+        {
+            canonManager.BringNearer();
+        }
         BuildingPlacement.instance.SetItem(buildings[selectedBuildingIndex], buildingsDimensions[selectedBuildingIndex]);
+
         SetArrowsLocalPosition(selectedBuildingIndex);
         selectedBuildingArrows.transform.position = new Vector3(buildingsLocations[selectedBuildingIndex].x, 0, buildingsLocations[selectedBuildingIndex].z);
     }
