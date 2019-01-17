@@ -102,6 +102,7 @@ public class SelectAndMove : MonoBehaviour
 
         SetArrowsLocalPosition(index);
         selectedBuildingArrows.transform.position = new Vector3(buildingsLocations[index].x, 0, buildingsLocations[index].z);
+        BringArrowsNearer();
 
         selectedBuildingIndex = index;
     }
@@ -243,6 +244,15 @@ public class SelectAndMove : MonoBehaviour
         {
             canonManager.PutBack();
         }
+    }
+
+    public void BringArrowsNearer()
+    {
+        Vector3 CameraDirection = Camera.main.transform.forward * (-5);
+        arrow_x_p.transform.position = new Vector3(arrow_x_p.transform.position.x + CameraDirection.x, arrow_x_p.transform.position.y + CameraDirection.y, arrow_x_p.transform.position.z + CameraDirection.z);
+        arrow_x_n.transform.position = new Vector3(arrow_x_n.transform.position.x + CameraDirection.x, arrow_x_n.transform.position.y + CameraDirection.y, arrow_x_n.transform.position.z + CameraDirection.z);
+        arrow_z_p.transform.position = new Vector3(arrow_z_p.transform.position.x + CameraDirection.x, arrow_z_p.transform.position.y + CameraDirection.y, arrow_z_p.transform.position.z + CameraDirection.z);
+        arrow_z_n.transform.position = new Vector3(arrow_z_n.transform.position.x + CameraDirection.x, arrow_z_n.transform.position.y + CameraDirection.y, arrow_z_n.transform.position.z + CameraDirection.z);
     }
     //-----------------------------------------------------------------------------------------
 
