@@ -85,21 +85,25 @@ public class SelectAndMove : MonoBehaviour
             {
                 buildings[selectedBuildingIndex].transform.position = new Vector3(buildingsLocations[selectedBuildingIndex].x, buildingsLocations[selectedBuildingIndex].y, buildingsLocations[selectedBuildingIndex].z);
                 buildingBasisMeshRenderers[selectedBuildingIndex].material = green;
-            }      
+            }    
             
-
+            if(selectedBuildingIndex != index)
+            {
+                PutBuildingBack(selectedBuildingIndex);
+                BringBuildingNearer(index);
+            }        
         }
-        selectedBuildingIndex = index;
-
-        CanonManager canonManager = buildings[selectedBuildingIndex].GetComponent(typeof(CanonManager)) as CanonManager;
-        if (canonManager != null)
+        else
         {
-            canonManager.BringNearer();
+            BringBuildingNearer(index);
         }
-        BuildingPlacement.instance.SetItem(buildings[selectedBuildingIndex], buildingsDimensions[selectedBuildingIndex]);
+           
+        BuildingPlacement.instance.SetItem(buildings[index], buildingsDimensions[index]);
 
-        SetArrowsLocalPosition(selectedBuildingIndex);
-        selectedBuildingArrows.transform.position = new Vector3(buildingsLocations[selectedBuildingIndex].x, 0, buildingsLocations[selectedBuildingIndex].z);
+        SetArrowsLocalPosition(index);
+        selectedBuildingArrows.transform.position = new Vector3(buildingsLocations[index].x, 0, buildingsLocations[index].z);
+
+        selectedBuildingIndex = index;
     }
 
     // Kvieciamas tik tada kai paspaudziama ant movables layer neturincio pastato
@@ -118,6 +122,7 @@ public class SelectAndMove : MonoBehaviour
                 buildings[selectedBuildingIndex].transform.position = new Vector3(buildingsLocations[selectedBuildingIndex].x, buildingsLocations[selectedBuildingIndex].y, buildingsLocations[selectedBuildingIndex].z);
                 buildingBasisMeshRenderers[selectedBuildingIndex].material = green;
             }
+            PutBuildingBack(selectedBuildingIndex);
             selectedBuildingIndex = -1;
             selectedBuildingArrows.transform.position = new Vector3(0, -100, 0);
         }
@@ -220,6 +225,24 @@ public class SelectAndMove : MonoBehaviour
         arrow_x_n.transform.localPosition = new Vector3((float)-x_value, 0, 0);
         arrow_z_p.transform.localPosition = new Vector3(0, 0, (float)z_value);
         arrow_z_n.transform.localPosition = new Vector3(0, 0, (float)-z_value);
+    }
+
+    private void BringBuildingNearer(int buildingIndex)
+    {
+        CanonManager canonManager = buildings[buildingIndex].GetComponent(typeof(CanonManager)) as CanonManager;
+        if (canonManager != null)
+        {            
+            canonManager.BringNearer();
+        }
+    }
+
+    private void PutBuildingBack(int buildingIndex)
+    {
+        CanonManager canonManager = buildings[buildingIndex].GetComponent(typeof(CanonManager)) as CanonManager;
+        if (canonManager != null)
+        {
+            canonManager.PutBack();
+        }
     }
     //-----------------------------------------------------------------------------------------
 
