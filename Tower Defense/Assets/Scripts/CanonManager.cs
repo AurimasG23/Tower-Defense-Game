@@ -28,7 +28,7 @@ public class CanonManager : MonoBehaviour
 
     public void BringNearer()
     {
-        Vector3 CameraDirection = Camera.main.transform.forward * (-5);
+        Vector3 CameraDirection = Camera.main.transform.forward * (-10);
         zole.transform.position = new Vector3(zole.transform.position.x + CameraDirection.x, zole.transform.position.y + CameraDirection.y, zole.transform.position.z + CameraDirection.z);
         remas.transform.position = new Vector3(remas.transform.position.x + CameraDirection.x, remas.transform.position.y + CameraDirection.y, remas.transform.position.z + CameraDirection.z);
         platforma.transform.position = new Vector3(platforma.transform.position.x + CameraDirection.x, platforma.transform.position.y + CameraDirection.y, platforma.transform.position.z + CameraDirection.z);
@@ -40,7 +40,7 @@ public class CanonManager : MonoBehaviour
 
     public void PutBack()
     {
-        zole.transform.localPosition= new Vector3(0, 0.005f, 0);
+        zole.transform.localPosition= new Vector3(0, 0, 0);
         remas.transform.localPosition = new Vector3(0, 1.18f, 0);
         platforma.transform.localPosition = new Vector3(0, 1.18f, 0);
         begiai.transform.localPosition = new Vector3(0, 1.18f, 0);

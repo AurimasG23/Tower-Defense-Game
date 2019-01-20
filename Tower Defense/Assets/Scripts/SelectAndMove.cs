@@ -248,7 +248,7 @@ public class SelectAndMove : MonoBehaviour
 
     public void BringArrowsNearer()
     {
-        Vector3 CameraDirection = Camera.main.transform.forward * (-5);
+        Vector3 CameraDirection = Camera.main.transform.forward * (-10);
         arrow_x_p.transform.position = new Vector3(arrow_x_p.transform.position.x + CameraDirection.x, arrow_x_p.transform.position.y + CameraDirection.y, arrow_x_p.transform.position.z + CameraDirection.z);
         arrow_x_n.transform.position = new Vector3(arrow_x_n.transform.position.x + CameraDirection.x, arrow_x_n.transform.position.y + CameraDirection.y, arrow_x_n.transform.position.z + CameraDirection.z);
         arrow_z_p.transform.position = new Vector3(arrow_z_p.transform.position.x + CameraDirection.x, arrow_z_p.transform.position.y + CameraDirection.y, arrow_z_p.transform.position.z + CameraDirection.z);
