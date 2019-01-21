@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 75687f482cd62ad46ad3e2a253bd9ada
+guid: 472850cfebbf6fc4e8d9ee64cf69b229
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cylinder.025(vamzdis)
+    4300000: Cylinder.027(varztai laikikliu).002
   externalObjects: {}
   materials:
     importMaterials: 1
