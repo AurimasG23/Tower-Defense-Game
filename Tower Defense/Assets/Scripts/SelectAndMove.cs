@@ -72,7 +72,6 @@ public class SelectAndMove : MonoBehaviour
     //Kvieciamas kai paspaudziama ant movables layer turincio pastato
     public void SelectBuilding(int index)
     {
-
         if (selectedBuildingIndex != -1)
         {           
             if(EmptySpot(selectedBuildingIndex))
@@ -231,18 +230,28 @@ public class SelectAndMove : MonoBehaviour
     private void BringBuildingNearer(int buildingIndex)
     {
         CanonManager canonManager = buildings[buildingIndex].GetComponent(typeof(CanonManager)) as CanonManager;
+        CrossbowManager crossbowManager = buildings[buildingIndex].GetComponent(typeof(CrossbowManager)) as CrossbowManager;
         if (canonManager != null)
         {            
             canonManager.BringNearer();
+        }
+        else if(crossbowManager != null)
+        {
+            crossbowManager.BringNearer();
         }
     }
 
     private void PutBuildingBack(int buildingIndex)
     {
         CanonManager canonManager = buildings[buildingIndex].GetComponent(typeof(CanonManager)) as CanonManager;
+        CrossbowManager crossbowManager = buildings[buildingIndex].GetComponent(typeof(CrossbowManager)) as CrossbowManager;
         if (canonManager != null)
         {
             canonManager.PutBack();
+        }
+        else if (crossbowManager != null)
+        {
+            crossbowManager.PutBack();
         }
     }
 
@@ -256,12 +265,40 @@ public class SelectAndMove : MonoBehaviour
     }
     //-----------------------------------------------------------------------------------------
 
+    //private void Renew()
+    //{
+    //    buildingsLocations[0] = new BuildingLocation(10.5f, 0, 10.5f);
+    //    buildingsLocations[1] = new BuildingLocation(-10.5f, 0, 10.5f);
+    //    buildingsLocations[2] = new BuildingLocation(-10.5f, 0, -10.5f);
+    //    buildingsLocations[3] = new BuildingLocation(10.5f, 0, -10.5f);
+
+    //    for (int i = 0; i < baseGridDimensionZ_p + baseGridDimensionZ_n; i++)
+    //    {
+    //        for (int j = 0; j < baseGridDimensionX_p + baseGridDimensionX_n; j++)
+    //        {
+    //            if (i >= 14 && i <= 25)
+    //            {
+    //                base_squares[i, j] = -2; // kelias ir sienos
+    //            }
+    //            else
+    //            {
+    //                base_squares[i, j] = -1;
+    //            }
+    //        }
+    //    }
+
+    //    FillSquares(0, buildingsLocations[0]);
+    //    FillSquares(1, buildingsLocations[1]);
+    //    FillSquares(2, buildingsLocations[2]);      
+    //    FillSquares(3, buildingsLocations[3]);
+    //}
+
     private void Renew()
     {
-        buildingsLocations[0] = new BuildingLocation(10.5f, 0, 10.5f);
-        buildingsLocations[1] = new BuildingLocation(-10.5f, 0, 10.5f);
-        buildingsLocations[2] = new BuildingLocation(-10.5f, 0, -10.5f);
-        buildingsLocations[3] = new BuildingLocation(10.5f, 0, -10.5f);
+        for(int i = 0; i < numberOfBuildings; i++)
+        {
+            buildingsLocations[i] = new BuildingLocation(0, -100, 0);
+        }       
 
         for (int i = 0; i < baseGridDimensionZ_p + baseGridDimensionZ_n; i++)
         {
@@ -276,11 +313,6 @@ public class SelectAndMove : MonoBehaviour
                     base_squares[i, j] = -1;
                 }
             }
-        }
-
-        FillSquares(0, buildingsLocations[0]);
-        FillSquares(1, buildingsLocations[1]);
-        FillSquares(2, buildingsLocations[2]);      
-        FillSquares(3, buildingsLocations[3]);
+        }       
     }
 }

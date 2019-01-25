@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CrossbowManager : MonoBehaviour
 {
-    GameObject crossbowTower;  //visas objektas
+    public GameObject crossbowTower;  //visas objektas
 
-    GameObject crossbowTower_parts;
+    public GameObject crossbowTower_parts;
     
 
 	// Use this for initialization
