@@ -265,6 +265,29 @@ public class SelectAndMove : MonoBehaviour
     }
     //-----------------------------------------------------------------------------------------
 
+    public int GetIndexOfAvailableBuilding(int startIndex, int count)
+    {
+        for(int i = startIndex; i < startIndex + count; i++)
+        {
+            if(buildingsLocations[i].y == -100)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void AddBuilding(int startIndex, int count)
+    {
+        int index = GetIndexOfAvailableBuilding(startIndex, count);
+        if(index != -1)
+        {
+            SelectBuilding(index);
+        }
+    }
+
+    //-----------------------------------------------------------------------------------------
+
     //private void Renew()
     //{
     //    buildingsLocations[0] = new BuildingLocation(10.5f, 0, 10.5f);

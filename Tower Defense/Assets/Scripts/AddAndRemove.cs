@@ -13,4 +13,16 @@ public class AddAndRemove : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void BuyBuilding(int index)
+    {
+        if(index == 0)
+        {
+            //AddBuilding(int startIndex, int count);
+        }
+        else if (index == 1)
+        {
+            //AddBuilding(int startIndex, int count);
+        }
+    }
 }
