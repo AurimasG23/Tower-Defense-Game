@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SelectAndMove : MonoBehaviour
 {
     //------------------------------------------------------------------
-    public static int numberOfBuildings = 4;           //pastatų kiekis
+    public static int numberOfBuildings = 20;           //pastatų kiekis
     public static int baseGridDimensionX_p = 30;       //langeliu kiekis x teigiamoj pusej
     public static int baseGridDimensionX_n = 40;       //langeliu kiekis x neigiamoj pusej
     public static int baseGridDimensionZ_p = 20;       //langeliu kiekis z teigiamoj pusej
@@ -72,38 +72,42 @@ public class SelectAndMove : MonoBehaviour
     //Kvieciamas kai paspaudziama ant movables layer turincio pastato
     public void SelectBuilding(int index)
     {
-        if (selectedBuildingIndex != -1)
-        {           
-            if(EmptySpot(selectedBuildingIndex))
+        if (index != selectedBuildingIndex)
+        {
+            if (selectedBuildingIndex != -1)
             {
-                ClearSquares(selectedBuildingIndex, buildingsLocations[selectedBuildingIndex]);
-                buildingsLocations[selectedBuildingIndex] = new BuildingLocation(buildings[selectedBuildingIndex].transform.position.x, buildings[selectedBuildingIndex].transform.position.y, buildings[selectedBuildingIndex].transform.position.z);
-                FillSquares(selectedBuildingIndex, buildingsLocations[selectedBuildingIndex]);
+                if (EmptySpot(selectedBuildingIndex))
+                {
+                    ClearSquares(selectedBuildingIndex, buildingsLocations[selectedBuildingIndex]);
+                    buildingsLocations[selectedBuildingIndex] = new BuildingLocation(buildings[selectedBuildingIndex].transform.position.x, buildings[selectedBuildingIndex].transform.position.y, buildings[selectedBuildingIndex].transform.position.z);
+                    FillSquares(selectedBuildingIndex, buildingsLocations[selectedBuildingIndex]);
+                }
+                else
+                {
+                    buildings[selectedBuildingIndex].transform.position = new Vector3(buildingsLocations[selectedBuildingIndex].x, buildingsLocations[selectedBuildingIndex].y, buildingsLocations[selectedBuildingIndex].z);
+                    buildingBasisMeshRenderers[selectedBuildingIndex].material = green;
+                }
+
+                if (selectedBuildingIndex != index)
+                {
+                    PutBuildingBack(selectedBuildingIndex);
+                    BringBuildingNearer(index);
+                }
             }
             else
             {
-                buildings[selectedBuildingIndex].transform.position = new Vector3(buildingsLocations[selectedBuildingIndex].x, buildingsLocations[selectedBuildingIndex].y, buildingsLocations[selectedBuildingIndex].z);
-                buildingBasisMeshRenderers[selectedBuildingIndex].material = green;
-            }    
-            
-            if(selectedBuildingIndex != index)
-            {
-                PutBuildingBack(selectedBuildingIndex);
                 BringBuildingNearer(index);
-            }        
-        }
-        else
-        {
-            BringBuildingNearer(index);
-        }
-           
-        BuildingPlacement.instance.SetItem(buildings[index], buildingsDimensions[index]);
+            }
 
-        SetArrowsLocalPosition(index);
-        selectedBuildingArrows.transform.position = new Vector3(buildingsLocations[index].x, 0, buildingsLocations[index].z);
-        BringArrowsNearer();
+            BuildingPlacement.instance.SetItem(buildings[index], buildingsDimensions[index]);
 
-        selectedBuildingIndex = index;
+            SetArrowsLocalPosition(index);
+            selectedBuildingArrows.transform.position = new Vector3(buildings[index].transform.position.x, 0, buildings[index].transform.position.z);
+            BringArrowsNearer();
+
+            selectedBuildingIndex = index;
+            Debug.Log("Selected");
+        }
     }
 
     // Kvieciamas tik tada kai paspaudziama ant movables layer neturincio pastato
@@ -126,6 +130,7 @@ public class SelectAndMove : MonoBehaviour
             selectedBuildingIndex = -1;
             selectedBuildingArrows.transform.position = new Vector3(0, -100, 0);
         }
+        Debug.Log("Deselected");
     }
     //-------------------------------------------------------------------------------------------------------
 
@@ -134,6 +139,7 @@ public class SelectAndMove : MonoBehaviour
         //Renew();
         DataFileHandler.ChangeBuildingLocations(buildingLocationsDataFile, buildingsLocations, numberOfBuildings);
         DataFileHandler.ChangeBaseSquares(baseSquaresDataFile, base_squares, baseGridDimensionX_p + baseGridDimensionX_n, baseGridDimensionZ_p + baseGridDimensionZ_n);
+        AddAndRemove.instance.SaveMoneyValue();
     }
 
     private Vector2[,] FindBuildingSquares(int biuldingIndex, BuildingLocation buildingLocation)
@@ -265,9 +271,9 @@ public class SelectAndMove : MonoBehaviour
     }
     //-----------------------------------------------------------------------------------------
 
-    public int GetIndexOfAvailableBuilding(int startIndex, int count)
+    public int GetIndexOfAvailableBuilding(int startIndex, int bound)
     {
-        for(int i = startIndex; i < startIndex + count; i++)
+        for(int i = startIndex; i < bound; i++)
         {
             if(buildingsLocations[i].y == -100)
             {
@@ -277,10 +283,31 @@ public class SelectAndMove : MonoBehaviour
         return -1;
     }
 
-    public void AddBuilding(int startIndex, int count)
+    public void AddBuilding(int startIndex, int bound)
     {
-        int index = GetIndexOfAvailableBuilding(startIndex, count);
-        if(index != -1)
+        int index = GetIndexOfAvailableBuilding(startIndex, bound);
+        float x, z;
+        if(buildingsDimensions[index].xLength % 2 != 0)
+        {
+            x = 0.5f;
+        }
+        else
+        {
+            x = 0;
+        }
+        if (buildingsDimensions[index].zWidth % 2 != 0)
+        {
+            z = 0.5f;
+        }
+        else
+        {
+            z = 0;
+        }
+        buildings[index].transform.position = new Vector3(x, 0, z);
+
+        buildingBasisMeshRenderers[index].material = red;
+
+        if (index != -1)
         {
             SelectBuilding(index);
         }
@@ -336,6 +363,8 @@ public class SelectAndMove : MonoBehaviour
                     base_squares[i, j] = -1;
                 }
             }
-        }       
+        }
+
+        PlayerPrefs.SetInt("money", 0);
     }
 }
