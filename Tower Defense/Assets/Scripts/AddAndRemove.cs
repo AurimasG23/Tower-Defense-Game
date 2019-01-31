@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AddAndRemove : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class AddAndRemove : MonoBehaviour
     private int crossbowTower_price = 4000;
 
     public GameObject shopPanel;
+    public Text moneyText;
+    public Text shopMoneyText;
 
 
     public static AddAndRemove instance;
@@ -28,6 +31,9 @@ public class AddAndRemove : MonoBehaviour
         {
             money = 100000;
         }
+
+        moneyText.text = money.ToString();
+        shopMoneyText.text = money.ToString();
 	}
 	
 	// Update is called once per frame
