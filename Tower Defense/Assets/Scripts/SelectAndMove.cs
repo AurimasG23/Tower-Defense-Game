@@ -313,6 +313,12 @@ public class SelectAndMove : MonoBehaviour
         }
     }
 
+    public void RemoveBuilding()
+    {
+        buildings[selectedBuildingIndex].transform.position = new Vector3(0, -100, 0);
+        selectedBuildingIndex = -1;
+    }
+
     //-----------------------------------------------------------------------------------------
 
     //private void Renew()

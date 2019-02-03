@@ -62,6 +62,20 @@ public class AddAndRemove : MonoBehaviour
         shopPanel.SetActive(false);
     }
 
+    public void SellBuilding()
+    {
+        int buildingIndex = SelectAndMove.instance.selectedBuildingIndex;
+        if (buildingIndex > 0 && buildingIndex < crossbowTower_startIndex)
+        {
+            money = money + canon_price;
+        }
+        else if(buildingIndex >= crossbowTower_startIndex && buildingIndex < crossbowTower_startIndex + 10)
+        {
+            money = money + crossbowTower_price;
+        }
+        SelectAndMove.instance.RemoveBuilding();
+    }
+
     public void SaveMoneyValue()
     {
         PlayerPrefs.SetInt("money", money);
