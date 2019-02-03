@@ -316,7 +316,10 @@ public class SelectAndMove : MonoBehaviour
     public void RemoveBuilding()
     {
         buildings[selectedBuildingIndex].transform.position = new Vector3(0, -100, 0);
+        BuildingLocation location = buildingsLocations[selectedBuildingIndex];
+        ClearSquares(selectedBuildingIndex, location);
         selectedBuildingIndex = -1;
+        selectedBuildingArrows.transform.position = new Vector3(0, -100, 0);
     }
 
     //-----------------------------------------------------------------------------------------
