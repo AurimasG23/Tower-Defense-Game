@@ -12,10 +12,13 @@ public class Click : MonoBehaviour
 
     private OnClick onClick;
 
-    // Use this for initialization
-    //void Start () {
+    private bool mouseOverCanvaselement;
 
-    //}
+    // Use this for initialization
+    void Start ()
+    {
+        mouseOverCanvaselement = false;
+    }
 
     // Update is called once per frame
     void Update ()
