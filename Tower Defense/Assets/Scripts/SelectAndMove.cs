@@ -35,6 +35,8 @@ public class SelectAndMove : MonoBehaviour
     public GameObject arrow_z_p;
     public GameObject arrow_z_n;
 
+    public Button removeBuildingButton;
+
 
     public static SelectAndMove instance;
 	// Use this for initialization
@@ -108,6 +110,7 @@ public class SelectAndMove : MonoBehaviour
             selectedBuildingIndex = index;
             Debug.Log("Selected");
         }
+        removeBuildingButton.gameObject.SetActive(true);
     }
 
     // Kvieciamas tik tada kai paspaudziama ant movables layer neturincio pastato
@@ -130,7 +133,7 @@ public class SelectAndMove : MonoBehaviour
             selectedBuildingIndex = -1;
             selectedBuildingArrows.transform.position = new Vector3(0, -100, 0);
         }
-        Debug.Log("Deselected");
+        removeBuildingButton.gameObject.SetActive(false);
     }
     //-------------------------------------------------------------------------------------------------------
 
@@ -320,6 +323,7 @@ public class SelectAndMove : MonoBehaviour
         ClearSquares(selectedBuildingIndex, location);
         selectedBuildingIndex = -1;
         selectedBuildingArrows.transform.position = new Vector3(0, -100, 0);
+        Debug.Log("RemoveBuilding");
     }
 
     //-----------------------------------------------------------------------------------------
