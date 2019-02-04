@@ -134,6 +134,7 @@ public class SelectAndMove : MonoBehaviour
             selectedBuildingArrows.transform.position = new Vector3(0, -100, 0);
         }
         removeBuildingButton.gameObject.SetActive(false);
+        Debug.Log("Delected");
     }
     //-------------------------------------------------------------------------------------------------------
 
@@ -323,6 +324,7 @@ public class SelectAndMove : MonoBehaviour
         ClearSquares(selectedBuildingIndex, location);
         selectedBuildingIndex = -1;
         selectedBuildingArrows.transform.position = new Vector3(0, -100, 0);
+        removeBuildingButton.gameObject.SetActive(false);
         Debug.Log("RemoveBuilding");
     }
 

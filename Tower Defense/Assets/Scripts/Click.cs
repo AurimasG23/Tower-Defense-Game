@@ -2,28 +2,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Click : MonoBehaviour
 {
     [SerializeField]
     private LayerMask movablesLayer;
-    private float maxBuildingClickDuration = 0.4f;
+    [SerializeField]
+    private LayerMask movelessLayer;
+    private float maxBuildingClickDuration = 0.3f;
     private float clickTime;
 
     private OnClick onClick;
 
-    private bool mouseOverCanvaselement;
+    private bool deselect;
 
     // Use this for initialization
     void Start ()
     {
-        mouseOverCanvaselement = false;
+        deselect = false;
     }
 
     // Update is called once per frame
     void Update ()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(!EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonDown(0))
         {
             RaycastHit rayHit;
 
@@ -31,11 +34,13 @@ public class Click : MonoBehaviour
                 movablesLayer, QueryTriggerInteraction.UseGlobal))
             {
                 clickTime = Time.timeSinceLevelLoad;
-                onClick = rayHit.collider.GetComponent<OnClick>();               
+                onClick = rayHit.collider.GetComponent<OnClick>();
             }
-            else
+            else if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity,
+                movelessLayer, QueryTriggerInteraction.UseGlobal))
             {
-                SelectAndMove.instance.DeselectBuildings();
+                clickTime = Time.timeSinceLevelLoad;
+                deselect = true;
             }
         }
 
@@ -46,6 +51,11 @@ public class Click : MonoBehaviour
                 if (onClick)
                 {
                     onClick.SelectMe();
+                }
+                if(deselect)
+                {
+                    SelectAndMove.instance.DeselectBuildings();
+                    deselect = false;
                 }
             }
 
