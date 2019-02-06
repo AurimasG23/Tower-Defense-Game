@@ -101,6 +101,20 @@ public class SelectAndMove : MonoBehaviour
                 BringBuildingNearer(index);
             }
 
+            if (selectedBuildingIndex != -1 && buildings[selectedBuildingIndex].transform.position == new Vector3(0, -100, 0))
+            {
+                CanonManager canonManager = buildings[selectedBuildingIndex].GetComponent(typeof(CanonManager)) as CanonManager;
+                CrossbowManager crossbowManager = buildings[selectedBuildingIndex].GetComponent(typeof(CrossbowManager)) as CrossbowManager;
+                if (canonManager != null)
+                {
+                    AddAndRemove.instance.SellCanon();
+                }
+                else if (crossbowManager != null)
+                {
+                    AddAndRemove.instance.SellCrossbowTower();
+                }
+            }
+
             BuildingPlacement.instance.SetItem(buildings[index], buildingsDimensions[index]);
 
             SetArrowsLocalPosition(index);
@@ -108,7 +122,6 @@ public class SelectAndMove : MonoBehaviour
             BringArrowsNearer();
 
             selectedBuildingIndex = index;
-            Debug.Log("Selected");
         }
         removeBuildingButton.gameObject.SetActive(true);
     }
@@ -129,12 +142,24 @@ public class SelectAndMove : MonoBehaviour
                 buildings[selectedBuildingIndex].transform.position = new Vector3(buildingsLocations[selectedBuildingIndex].x, buildingsLocations[selectedBuildingIndex].y, buildingsLocations[selectedBuildingIndex].z);
                 buildingBasisMeshRenderers[selectedBuildingIndex].material = green;
             }
+            if (buildings[selectedBuildingIndex].transform.position == new Vector3(0, -100, 0))
+            {
+                CanonManager canonManager = buildings[selectedBuildingIndex].GetComponent(typeof(CanonManager)) as CanonManager;
+                CrossbowManager crossbowManager = buildings[selectedBuildingIndex].GetComponent(typeof(CrossbowManager)) as CrossbowManager;
+                if (canonManager != null)
+                {
+                    AddAndRemove.instance.SellCanon();
+                }
+                else if (crossbowManager != null)
+                {
+                    AddAndRemove.instance.SellCrossbowTower();
+                }
+            }
             PutBuildingBack(selectedBuildingIndex);
             selectedBuildingIndex = -1;
             selectedBuildingArrows.transform.position = new Vector3(0, -100, 0);
         }
         removeBuildingButton.gameObject.SetActive(false);
-        Debug.Log("Delected");
     }
     //-------------------------------------------------------------------------------------------------------
 
@@ -322,10 +347,10 @@ public class SelectAndMove : MonoBehaviour
         buildings[selectedBuildingIndex].transform.position = new Vector3(0, -100, 0);
         BuildingLocation location = buildingsLocations[selectedBuildingIndex];
         ClearSquares(selectedBuildingIndex, location);
+        buildingsLocations[selectedBuildingIndex] = new BuildingLocation(buildings[selectedBuildingIndex].transform.position.x, buildings[selectedBuildingIndex].transform.position.y, buildings[selectedBuildingIndex].transform.position.z);
         selectedBuildingIndex = -1;
         selectedBuildingArrows.transform.position = new Vector3(0, -100, 0);
         removeBuildingButton.gameObject.SetActive(false);
-        Debug.Log("RemoveBuilding");
     }
 
     //-----------------------------------------------------------------------------------------
@@ -380,6 +405,6 @@ public class SelectAndMove : MonoBehaviour
             }
         }
 
-        PlayerPrefs.SetInt("money", 0);
+        AddAndRemove.instance.ChangeMoneyValue(100000);
     }
 }

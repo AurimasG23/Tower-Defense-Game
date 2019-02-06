@@ -32,14 +32,15 @@ public class AddAndRemove : MonoBehaviour
             money = 100000;
         }
 
-        moneyText.text = money.ToString();
-        shopMoneyText.text = money.ToString();
+       // moneyText.text = money.ToString();
+        
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	void Update ()
+    {
+        shopMoneyText.text = money.ToString();
+    }
 
     public void BuyBuilding(int index)
     {
@@ -48,7 +49,7 @@ public class AddAndRemove : MonoBehaviour
             if(money > canon_price)
             {
                 SelectAndMove.instance.AddBuilding(canon_startIndex, crossbowTower_startIndex);
-                money = money - canon_price;  // pinigu issaugojimas select and move klasej save metode
+                money = money - canon_price;
             }
         }
         else if (index == 1)
@@ -56,16 +57,17 @@ public class AddAndRemove : MonoBehaviour
             if (money > crossbowTower_price)
             {
                 SelectAndMove.instance.AddBuilding(crossbowTower_startIndex, crossbowTower_startIndex + 10);
-                money = money - crossbowTower_price;  // pinigu issaugojimas select and move klasej save metode
+                money = money - crossbowTower_price;  
             }
         }
         shopPanel.SetActive(false);
+        Debug.Log(money.ToString());
     }
 
     public void SellBuilding()
     {
         int buildingIndex = SelectAndMove.instance.selectedBuildingIndex;
-        if (buildingIndex > 0 && buildingIndex < crossbowTower_startIndex)
+        if (buildingIndex >= 0 && buildingIndex < crossbowTower_startIndex)
         {
             money = money + canon_price;
         }
@@ -74,10 +76,26 @@ public class AddAndRemove : MonoBehaviour
             money = money + crossbowTower_price;
         }
         SelectAndMove.instance.RemoveBuilding();
+        Debug.Log(money.ToString());
+    }
+
+    public void ChangeMoneyValue(int value)
+    {
+        money = value;
+    }
+
+    public void SellCanon()
+    {
+        money = money + canon_price;
+    }
+
+    public void SellCrossbowTower()
+    {
+        money = money + crossbowTower_price;
     }
 
     public void SaveMoneyValue()
     {
-        PlayerPrefs.SetInt("money", money);
-    }
+        PlayerPrefs.SetInt("money", money); // pinigu issaugojimas select and move klasej save metode
+    } 
 }
