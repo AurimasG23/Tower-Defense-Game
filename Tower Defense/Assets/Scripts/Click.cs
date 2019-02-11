@@ -51,6 +51,7 @@ public class Click : MonoBehaviour
                 if (onClick)
                 {
                     onClick.SelectMe();
+                    onClick = null;
                 }
                 if(deselect)
                 {
