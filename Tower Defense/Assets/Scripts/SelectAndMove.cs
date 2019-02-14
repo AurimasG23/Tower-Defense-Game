@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SelectAndMove : MonoBehaviour
 {
@@ -169,6 +170,7 @@ public class SelectAndMove : MonoBehaviour
         DataFileHandler.ChangeBuildingLocations(buildingLocationsDataFile, buildingsLocations, numberOfBuildings);
         DataFileHandler.ChangeBaseSquares(baseSquaresDataFile, base_squares, baseGridDimensionX_p + baseGridDimensionX_n, baseGridDimensionZ_p + baseGridDimensionZ_n);
         AddAndRemove.instance.SaveMoneyValue();
+        SceneManager.LoadScene("Menu");
     }
 
     private Vector2[,] FindBuildingSquares(int biuldingIndex, BuildingLocation buildingLocation)
