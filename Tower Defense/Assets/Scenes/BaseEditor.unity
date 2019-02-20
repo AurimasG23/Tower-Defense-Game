@@ -324,7 +324,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
       propertyPath: m_Name
-      value: crossbow_tower (9)
+      value: crossbow_tower_bEditor (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114101112040188232, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+        type: 2}
+      propertyPath: index
+      value: 19
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
@@ -332,6 +337,16 @@ Prefab:
 --- !u!4 &161789473 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4652278034458810, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 161789472}
+--- !u!1 &161789474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1227169329693504, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 161789472}
+--- !u!1 &161789475 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e,
     type: 2}
   m_PrefabInternal: {fileID: 161789472}
 --- !u!1 &170076733
@@ -451,7 +466,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
       propertyPath: m_Name
-      value: crossbow_tower (7)
+      value: crossbow_tower_bEditor (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114101112040188232, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+        type: 2}
+      propertyPath: index
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
@@ -459,6 +479,16 @@ Prefab:
 --- !u!4 &216278257 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4652278034458810, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 216278256}
+--- !u!1 &216278258 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1227169329693504, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 216278256}
+--- !u!1 &216278259 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e,
     type: 2}
   m_PrefabInternal: {fileID: 216278256}
 --- !u!1001 &229498417
@@ -772,7 +802,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
       propertyPath: m_Name
-      value: crossbow_tower (1)
+      value: crossbow_tower_bEditor (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114101112040188232, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+        type: 2}
+      propertyPath: index
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
@@ -780,6 +815,16 @@ Prefab:
 --- !u!4 &364461323 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4652278034458810, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 364461322}
+--- !u!1 &364461324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1227169329693504, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 364461322}
+--- !u!1 &364461325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e,
     type: 2}
   m_PrefabInternal: {fileID: 364461322}
 --- !u!1 &378185624 stripped
@@ -1809,7 +1854,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
       propertyPath: m_Name
-      value: crossbow_tower (8)
+      value: crossbow_tower_bEditor (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114101112040188232, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+        type: 2}
+      propertyPath: index
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
@@ -1817,6 +1867,16 @@ Prefab:
 --- !u!4 &738520140 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4652278034458810, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 738520139}
+--- !u!1 &738520141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1227169329693504, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 738520139}
+--- !u!1 &738520142 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e,
     type: 2}
   m_PrefabInternal: {fileID: 738520139}
 --- !u!1001 &749746364
@@ -2108,7 +2168,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
       propertyPath: m_Name
-      value: crossbow_tower (2)
+      value: crossbow_tower_bEditor (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114101112040188232, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+        type: 2}
+      propertyPath: index
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
@@ -2116,6 +2181,16 @@ Prefab:
 --- !u!4 &1080943732 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4652278034458810, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1080943731}
+--- !u!1 &1080943733 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1227169329693504, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1080943731}
+--- !u!1 &1080943734 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e,
     type: 2}
   m_PrefabInternal: {fileID: 1080943731}
 --- !u!1 &1201446869
@@ -2490,7 +2565,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
       propertyPath: m_Name
-      value: crossbow_tower (5)
+      value: crossbow_tower_bEditor (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114101112040188232, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+        type: 2}
+      propertyPath: index
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
@@ -2498,6 +2578,16 @@ Prefab:
 --- !u!4 &1384177717 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4652278034458810, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1384177716}
+--- !u!1 &1384177718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1227169329693504, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1384177716}
+--- !u!1 &1384177719 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e,
     type: 2}
   m_PrefabInternal: {fileID: 1384177716}
 --- !u!1 &1391498856
@@ -2682,7 +2772,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
       propertyPath: m_Name
-      value: crossbow_tower (4)
+      value: crossbow_tower_bEditor (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114101112040188232, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+        type: 2}
+      propertyPath: index
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
@@ -2690,6 +2785,16 @@ Prefab:
 --- !u!4 &1508718748 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4652278034458810, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1508718747}
+--- !u!1 &1508718749 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1227169329693504, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1508718747}
+--- !u!1 &1508718750 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e,
     type: 2}
   m_PrefabInternal: {fileID: 1508718747}
 --- !u!1 &1537314789
@@ -3307,15 +3412,15 @@ MonoBehaviour:
   - {fileID: 483164673}
   - {fileID: 1448302159}
   - {fileID: 214043688}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 364461325}
+  - {fileID: 1080943734}
+  - {fileID: 1954764021}
+  - {fileID: 1508718750}
+  - {fileID: 1384177719}
+  - {fileID: 2117688424}
+  - {fileID: 216278259}
+  - {fileID: 738520142}
+  - {fileID: 161789475}
   buildingsBasis:
   - {fileID: 246962610}
   - {fileID: 791608647}
@@ -3328,15 +3433,15 @@ MonoBehaviour:
   - {fileID: 483164672}
   - {fileID: 1448302158}
   - {fileID: 1601018405}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 364461324}
+  - {fileID: 1080943733}
+  - {fileID: 1954764020}
+  - {fileID: 1508718749}
+  - {fileID: 1384177718}
+  - {fileID: 2117688423}
+  - {fileID: 216278258}
+  - {fileID: 738520141}
+  - {fileID: 161789474}
   buildingsDimensions:
   - xLength: 5
     zWidth: 5
@@ -3446,7 +3551,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
       propertyPath: m_Name
-      value: crossbow_tower (3)
+      value: crossbow_tower_bEditor (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114101112040188232, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+        type: 2}
+      propertyPath: index
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
@@ -3454,6 +3564,16 @@ Prefab:
 --- !u!4 &1954764019 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4652278034458810, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1954764018}
+--- !u!1 &1954764020 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1227169329693504, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1954764018}
+--- !u!1 &1954764021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e,
     type: 2}
   m_PrefabInternal: {fileID: 1954764018}
 --- !u!1 &1963342240
@@ -3968,7 +4088,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
       propertyPath: m_Name
-      value: crossbow_tower (6)
+      value: crossbow_tower_bEditor (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114101112040188232, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+        type: 2}
+      propertyPath: index
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cae24c1ac8909f49a8d3cd71236514e, type: 2}
@@ -3976,5 +4101,15 @@ Prefab:
 --- !u!4 &2117688422 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4652278034458810, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2117688421}
+--- !u!1 &2117688423 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1227169329693504, guid: 8cae24c1ac8909f49a8d3cd71236514e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2117688421}
+--- !u!1 &2117688424 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1421459493193436, guid: 8cae24c1ac8909f49a8d3cd71236514e,
     type: 2}
   m_PrefabInternal: {fileID: 2117688421}
