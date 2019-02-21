@@ -20,4 +20,9 @@ public class MenuManager : MonoBehaviour {
     {
         SceneManager.LoadScene("BaseEditor");
     }
+
+    public void Play()
+    {
+        SceneManager.LoadScene("GamePlay");
+    }
 }
