@@ -23,7 +23,18 @@ public class GamePlayManager : MonoBehaviour
     }
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	void Update ()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            Debug.Log("mouse wheel up");
+            Camera.main.orthographicSize -= 1;
+        }
+        else if(Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            Debug.Log("mouse wheel down");
+            Camera.main.orthographicSize += 1;
+        }
+
+    }
 }
