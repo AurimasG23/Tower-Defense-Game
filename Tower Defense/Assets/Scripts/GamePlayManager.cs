@@ -105,7 +105,7 @@ public class GamePlayManager : MonoBehaviour
             Vector3 newCameraPosition = Origin - Diference;
             float xMin = -20 - ((20 - Camera.main.orthographicSize) * 2);
             float xMax = 10 + ((20 - Camera.main.orthographicSize) * 2);
-            float zMin = -25 - ((20 - Camera.main.orthographicSize) * 2);
+            float zMin = -40 - ((20 - Camera.main.orthographicSize) * 2);
             float zMax = 0 + ((20 - Camera.main.orthographicSize) * 2);
             if (newCameraPosition.x < xMin || newCameraPosition.x > xMax)
             {
