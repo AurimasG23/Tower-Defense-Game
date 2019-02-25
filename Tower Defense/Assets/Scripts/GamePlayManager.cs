@@ -103,10 +103,10 @@ public class GamePlayManager : MonoBehaviour
         if (Drag == true)
         {
             Vector3 newCameraPosition = Origin - Diference;
-            float xMin = -20 - ((20 - Camera.main.orthographicSize) * 2);
-            float xMax = 10 + ((20 - Camera.main.orthographicSize) * 2);
-            float zMin = -40 - ((20 - Camera.main.orthographicSize) * 2);
-            float zMax = 0 + ((20 - Camera.main.orthographicSize) * 2);
+            float xMin = -40 - ((20 - Camera.main.orthographicSize) * 2);
+            float xMax = 30 + ((20 - Camera.main.orthographicSize) * 2);
+            float zMin = -60 - ((20 - Camera.main.orthographicSize) * 2);
+            float zMax = 20 + ((20 - Camera.main.orthographicSize) * 2);
             if (newCameraPosition.x < xMin || newCameraPosition.x > xMax)
             {
                 newCameraPosition.x = Camera.main.transform.position.x;
