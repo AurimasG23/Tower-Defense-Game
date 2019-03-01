@@ -75,10 +75,14 @@ public class SelectAndMove : MonoBehaviour
     //Kvieciamas kai paspaudziama ant movables layer turincio pastato
     public void SelectBuilding(int index)
     {
+        Debug.Log("selectedBuildingIndex   " + selectedBuildingIndex.ToString());
+        Debug.Log("index   " + index.ToString());
         if (index != selectedBuildingIndex)
         {
+            Debug.Log("A");
             if (selectedBuildingIndex != -1)
             {
+                Debug.Log("B");
                 if (EmptySpot(selectedBuildingIndex))
                 {
                     ClearSquares(selectedBuildingIndex, buildingsLocations[selectedBuildingIndex]);
@@ -99,6 +103,7 @@ public class SelectAndMove : MonoBehaviour
             }
             else
             {
+                Debug.Log("A2");
                 BringBuildingNearer(index);
             }
 
@@ -269,11 +274,13 @@ public class SelectAndMove : MonoBehaviour
         CanonManager canonManager = buildings[buildingIndex].GetComponent(typeof(CanonManager)) as CanonManager;
         CrossbowManager crossbowManager = buildings[buildingIndex].GetComponent(typeof(CrossbowManager)) as CrossbowManager;
         if (canonManager != null)
-        {            
+        {
+            Debug.Log("canon");
             canonManager.BringNearer();
         }
         else if(crossbowManager != null)
         {
+            Debug.Log("xbow");
             crossbowManager.BringNearer();
         }
     }

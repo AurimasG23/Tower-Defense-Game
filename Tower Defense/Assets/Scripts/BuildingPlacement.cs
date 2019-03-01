@@ -10,6 +10,8 @@ public class BuildingPlacement : MonoBehaviour
     private BuildingDimensions selectedBuildingDimensions;  //pasirinkto pastato matmenys
     private bool mouseButtonPressedOnBuilding;       //ar pele paspausta ant pastato
 
+    public bool onDrag = false;
+
     [SerializeField]
     private LayerMask movablesLayer;
     private OnClick onClick;
@@ -51,11 +53,13 @@ public class BuildingPlacement : MonoBehaviour
         if(Input.GetMouseButtonUp(0))
         {
             mouseButtonPressedOnBuilding = false;
+            onDrag = false;
         }    
 
         // jei yra pasirinktas pastatas ir ant jo paspausta pele, tuomet pagal pele keiciam pastato pozicija
         if (SelectAndMove.instance.selectedBuildingIndex != -1 && mouseButtonPressedOnBuilding)
         {
+            onDrag = true;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hitInfo;

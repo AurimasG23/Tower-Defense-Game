@@ -21,7 +21,9 @@ public class CanonManager : MonoBehaviour
 
     public void BringNearer()
     {
-        Vector3 CameraDirection = Camera.main.transform.forward * (-10);    
+        Debug.Log("BringNearer");
+        Vector3 CameraDirection = Camera.main.transform.forward * (-10);
+        Debug.Log("Camera x   " + CameraDirection.x.ToString());
         canon_parts.transform.position = new Vector3(canon_parts.transform.position.x + CameraDirection.x, canon_parts.transform.position.y + CameraDirection.y, canon_parts.transform.position.z + CameraDirection.z);
     }
 
