@@ -27,8 +27,8 @@ public class Sounds : MonoBehaviour
             bgMusicPlaying[i] = false;
         }
 
-        bgMusicSources[0].Play();
-        bgMusicPlaying[0] = true;
+        //bgMusicSources[0].Play();
+        //bgMusicPlaying[0] = true;
 
 
         for (int i = 0; i < objectsWithAudioSOurces.Length; i++)
@@ -40,13 +40,13 @@ public class Sounds : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        for(int i = 0; i < bgMusicSources.Length; i++)
-        {
-            if(bgMusicPlaying[i] == true && !bgMusicSources[i].isPlaying)
-            {
-                bgMusicSources[i].Play();
-            }
-        }       
+        //for(int i = 0; i < bgMusicSources.Length; i++)
+        //{
+        //    if(bgMusicPlaying[i] == true && !bgMusicSources[i].isPlaying)
+        //    {
+        //        bgMusicSources[i].Play();
+        //    }
+        //}       
     }
 
     public void SetBackgroundMusic(int index)
