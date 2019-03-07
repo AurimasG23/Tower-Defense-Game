@@ -5,13 +5,16 @@ using UnityEngine;
 public class CanonControl : MonoBehaviour
 {
     private Transform target;
-    private float range = 15f;
-
+    private float range = 20f;
     private float turnSpeed = 10f;
-
     public Transform partToRotate;
-
     private string enemyTag = "Enemy";
+
+    private float fireRate = 2f;
+    private float fireCountDown = 0f;
+
+    public GameObject bulletPrefab;
+    public Transform firePoint;   //kulkos atsiradimo vieta
 
 	// Use this for initialization
 	void Start ()
@@ -32,6 +35,14 @@ public class CanonControl : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+        //shooting
+        if(fireCountDown <= 0f)
+        {
+            Shoot();
+            fireCountDown = 1f / fireRate;
+        }
+        fireCountDown -= Time.deltaTime;
 	}
 
     private void OnDrawGizmosSelected()
@@ -62,6 +73,17 @@ public class CanonControl : MonoBehaviour
         else
         {
             target = null;
+        }
+    }
+
+    void Shoot()
+    {
+        GameObject canonBullet = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        CanonBullet bullet = canonBullet.GetComponent<CanonBullet>();
+
+        if(bullet != null)
+        {
+            bullet.Seek(target);
         }
     }
 }
