@@ -4,21 +4,39 @@ using UnityEngine;
 
 public class GamePlayManager : MonoBehaviour
 {
-    public static int numberOfBuildings = 20;           //pastatų kiekis
+    public GameObject canonContainer;
+    public GameObject crossbowContainer;
+    public Transform[] defences;
+    private int canonCount;
+    private int crossbowCount;
 
-    public GameObject[] buildings;                      //pastatai
-
-    private BuildingLocation[] buildingsLocations = new BuildingLocation[numberOfBuildings];    // pastatų pozicijos
+    private BuildingLocation[] buildingsLocations;                                              // pastatų pozicijos
     private string buildingLocationsDataFile = "buildingLocations";                             // pastatų pozicijų duomenų failas
 
     // Use this for initialization
     void Start ()
     {
-        DataFileHandler.SetBuildingsLocationsOnFirstLaunch(buildingLocationsDataFile, numberOfBuildings);
-        buildingsLocations = DataFileHandler.ReadBuildingLocations(buildingLocationsDataFile, numberOfBuildings);
-        for (int i = 0; i < numberOfBuildings; i++)
+        canonCount = canonContainer.transform.childCount;
+        crossbowCount = crossbowContainer.transform.childCount;
+        defences = new Transform[canonCount + crossbowCount];
+        buildingsLocations = new BuildingLocation[canonCount + crossbowCount];
+        for (int i = 0; i < canonCount + crossbowCount; i++)
         {
-            buildings[i].transform.position = new Vector3(buildingsLocations[i].x, buildingsLocations[i].y, buildingsLocations[i].z);
+            if(i < canonCount)
+            {
+                defences[i] = canonContainer.transform.GetChild(i);
+            }
+            else
+            {
+                defences[i] = crossbowContainer.transform.GetChild(i - canonCount);
+            }
+        }
+
+        DataFileHandler.SetBuildingsLocationsOnFirstLaunch(buildingLocationsDataFile, canonCount + crossbowCount);        
+        buildingsLocations = DataFileHandler.ReadBuildingLocations(buildingLocationsDataFile, canonCount + crossbowCount);        
+        for (int i = 0; i < canonCount + crossbowCount; i++)
+        {
+            defences[i].transform.position = new Vector3(buildingsLocations[i].x, buildingsLocations[i].y, buildingsLocations[i].z);
         }
     }
 	
