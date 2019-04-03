@@ -17,7 +17,9 @@ public class TrapSphereForceManager : MonoBehaviour {
 
     public void SphereForce()
     {
-        transform.GetComponent<Rigidbody>().AddForce(new Vector3(transform.position.x, transform.position.y * (-200), transform.position.z), ForceMode.Acceleration);
+        transform.GetComponent<Rigidbody>().AddForce(
+            new Vector3(transform.position.x, transform.position.y * (-200), 
+            transform.position.z), ForceMode.Acceleration);
         transform.GetComponent<Rigidbody>().useGravity = true;
     }
 

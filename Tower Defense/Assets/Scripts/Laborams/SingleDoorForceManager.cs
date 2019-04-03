@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForceManager : MonoBehaviour {
+public class SingleDoorForceManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -14,19 +14,18 @@ public class ForceManager : MonoBehaviour {
 		
 	}
 
-    public void SphereForce()
+    public void OpenDoors()
     {
         transform.GetComponent<Rigidbody>().AddForce(new Vector3(
-            transform.position.x, transform.position.y * 300, 
-            transform.position.z), ForceMode.Acceleration);
-        transform.GetComponent<Rigidbody>().useGravity = true;
+            transform.rotation.x * 1000, transform.rotation.y,
+            transform.rotation.z), ForceMode.Acceleration);   
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "character")
+        if (other.tag == "character")
         {
-            SphereForce();
-        }     
+            OpenDoors();
+        }
     }
 }
