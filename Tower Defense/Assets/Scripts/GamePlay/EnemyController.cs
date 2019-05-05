@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
         if(Vector3.Distance(transform.position, target.position) <= 0.1f)
         {
             GetNextWayPoint();
-        }
+        }       
 	}
 
     void GetNextWayPoint()
@@ -36,5 +36,5 @@ public class EnemyController : MonoBehaviour
         }
         wayPointIndex++;
         target = WayPoints.points[wayPointIndex];
-    }
+    }   
 }

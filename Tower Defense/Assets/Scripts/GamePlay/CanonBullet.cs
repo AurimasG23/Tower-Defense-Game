@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CanonBullet : MonoBehaviour
 {
+    double damagePerShot = 50;
+    private EnemyHealth enemyHealth;
+
     private Transform target;
 
     private float speed = 70f;
@@ -35,7 +38,13 @@ public class CanonBullet : MonoBehaviour
     }
 
     void HitTarget()
-    {
+    {        
+        enemyHealth = target.GetComponent<EnemyHealth>();
+        if(enemyHealth != null)
+        {
+            Debug.Log("enemyFound");
+            enemyHealth.reduceHealth(damagePerShot);
+        }
         Destroy(gameObject);
         //Destroy(target.gameObject);   //prieso sunaikinimas
     }

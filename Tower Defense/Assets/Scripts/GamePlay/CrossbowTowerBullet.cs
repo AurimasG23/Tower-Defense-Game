@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CrossbowTowerBullet : MonoBehaviour
 {
+    double damagePerShot = 30;
+    private EnemyHealth enemyHealth;
+
     private Transform target;
 
     private float speed = 70f;
@@ -35,7 +38,12 @@ public class CrossbowTowerBullet : MonoBehaviour
     }
 
     void HitTarget()
-    {
+    {      
+        enemyHealth = target.GetComponent<EnemyHealth>();
+        if (enemyHealth != null)
+        {
+            enemyHealth.reduceHealth(damagePerShot);
+        }
         Destroy(gameObject);
         //Destroy(target.gameObject);   //prieso sunaikinimas
     }
