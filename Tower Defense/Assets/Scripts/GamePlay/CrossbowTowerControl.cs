@@ -79,7 +79,7 @@ public class CrossbowTowerControl : MonoBehaviour
     void Shoot()
     {
         GameObject crossbowBullet = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        CanonBullet bullet = crossbowBullet.GetComponent<CanonBullet>();   //!!!!!
+        CrossbowTowerBullet bullet = crossbowBullet.GetComponent<CrossbowTowerBullet>();
 
         if (bullet != null)
         {
