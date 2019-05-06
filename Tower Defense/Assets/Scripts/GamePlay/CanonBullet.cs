@@ -39,6 +39,11 @@ public class CanonBullet : MonoBehaviour
 
     void HitTarget()
     {        
+        if(target != null)
+        {
+            Debug.Log("target detected");
+            Debug.Log(target.name);
+        }
         enemyHealth = target.GetComponent<EnemyHealth>();
         if(enemyHealth != null)
         {
