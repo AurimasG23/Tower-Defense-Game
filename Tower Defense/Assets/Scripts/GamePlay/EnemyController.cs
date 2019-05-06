@@ -31,7 +31,8 @@ public class EnemyController : MonoBehaviour
     {
         if(wayPointIndex >= WayPoints.points.Length - 1)
         {
-            Destroy(gameObject);
+            GamePlayManager.instance.DecreaseLiveCount();
+            gameObject.GetComponent<EnemyHealth>().Die();
             return;
         }
         wayPointIndex++;

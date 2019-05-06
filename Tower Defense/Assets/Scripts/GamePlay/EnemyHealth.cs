@@ -24,10 +24,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (health <= 0)
         {
-            Vector3 deathEffectPosition = new Vector3(transform.position.x, 2.5f, transform.position.z);
-            GameObject deathEff = (GameObject)Instantiate(deathEffect, deathEffectPosition, Quaternion.identity);
-            Destroy(deathEff, 5f);
-            Destroy(gameObject);
+            Die();
         }
     }
 
@@ -53,5 +50,13 @@ public class EnemyHealth : MonoBehaviour
         {
             healthBar.color = new Color((float)195 / 255, (float)71 / 255, (float)12 / 255, 1);
         }
+    }
+
+    public void Die()
+    {
+        Vector3 deathEffectPosition = new Vector3(transform.position.x, 2.5f, transform.position.z);
+        GameObject deathEff = (GameObject)Instantiate(deathEffect, deathEffectPosition, Quaternion.identity);
+        Destroy(deathEff, 5f);
+        Destroy(gameObject);
     }
 }
