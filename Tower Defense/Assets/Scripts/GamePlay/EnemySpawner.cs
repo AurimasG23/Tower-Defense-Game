@@ -12,6 +12,20 @@ public class EnemySpawner : MonoBehaviour
 
     public Transform spawnPoint;
 
+    public GameObject spawnPointContainer;
+    public Transform[] spawnPoints;
+    int spawnPointsCount;
+
+    private void Start()
+    {
+        spawnPointsCount = spawnPointContainer.transform.childCount;
+        spawnPoints = new Transform[spawnPointsCount];
+        for (int i = 0; i < spawnPointsCount; i++)
+        {
+            spawnPoints[i] = spawnPointContainer.transform.GetChild(i);
+        }
+    }
+
 
     private void Update()
     {
@@ -37,6 +51,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        int point = Random.Range(0, spawnPointsCount);
+        Instantiate(enemyPrefab, spawnPoints[point].position, spawnPoint.rotation);
     }
 }

@@ -10,7 +10,7 @@ public class CrossbowTowerControl : MonoBehaviour
     public Transform partToRotate;
     private string enemyTag = "Enemy";
 
-    private float fireRate = 2f;
+    private float fireRate = 5f;
     private float fireCountDown = 0f;
 
     public GameObject bulletPrefab;

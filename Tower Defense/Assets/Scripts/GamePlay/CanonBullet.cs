@@ -38,17 +38,11 @@ public class CanonBullet : MonoBehaviour
     }
 
     void HitTarget()
-    {        
-        if(target != null)
-        {
-            Debug.Log("target detected");
-            Debug.Log(target.name);
-        }
+    {              
         enemyHealth = target.GetComponent<EnemyHealth>();
         if(enemyHealth != null)
         {
-            Debug.Log("enemyFound");
-            enemyHealth.reduceHealth(damagePerShot);
+            enemyHealth.ReduceHealth(damagePerShot);
         }
         Destroy(gameObject);
         //Destroy(target.gameObject);   //prieso sunaikinimas
