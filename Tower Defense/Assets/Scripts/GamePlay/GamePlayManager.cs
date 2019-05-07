@@ -14,8 +14,18 @@ public class GamePlayManager : MonoBehaviour
     private BuildingLocation[] buildingsLocations;                                              // pastatų pozicijos
     private string buildingLocationsDataFile = "buildingLocations";                             // pastatų pozicijų duomenų failas
 
+    private string enemyTag = "Enemy";
+
     private int liveCount = 5;
     public Text livesText;
+
+    private int score;
+    public Text scoreText;
+    private float scoreTimeInterval = 1f;
+    private float timer;
+
+    public GameObject endGamePanel;
+    public Text totalScoreText;
 
     public static GamePlayManager instance;
 
@@ -48,12 +58,19 @@ public class GamePlayManager : MonoBehaviour
         }
 
         livesText.text = "Lives: " + liveCount.ToString();
+
+        timer = 0;
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        
+        timer += Time.deltaTime;
+        if(timer >= scoreTimeInterval)
+        {
+            IncreaseScore(1);
+            timer = 0;
+        }
     }  
 
     public void DecreaseLiveCount()
@@ -62,6 +79,40 @@ public class GamePlayManager : MonoBehaviour
         {
             liveCount--;
             livesText.text = "Lives: " + liveCount.ToString();
+        }
+        if(liveCount <= 0)
+        {
+            EndGame();
+        }
+    }
+
+    public void IncreaseScore(int value)
+    {
+        if (liveCount > 0)
+        {
+            score += value;
+            scoreText.text = "Score: " + score.ToString();
+        }
+    }
+
+    public void EndGame()
+    {
+        totalScoreText.text = "Total score: " + score.ToString();
+        endGamePanel.transform.gameObject.SetActive(true);
+        DestroyAllEnemies();
+    }
+
+    public int GetLiveCount()
+    {
+        return liveCount;
+    }
+
+    public void DestroyAllEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        for(int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].GetComponent<EnemyHealth>().Die();
         }
     }
 }

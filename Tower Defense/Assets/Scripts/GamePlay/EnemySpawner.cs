@@ -29,13 +29,16 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if(countDown <= 0f)
+        if (GamePlayManager.instance.GetLiveCount() > 0)
         {
-            StartCoroutine(SpawnWave());
-            countDown = timeBetweenWaves;
-        }
+            if (countDown <= 0f)
+            {
+                StartCoroutine(SpawnWave());
+                countDown = timeBetweenWaves;
+            }
 
-        countDown -= Time.deltaTime;
+            countDown -= Time.deltaTime;
+        }
     }
 
     IEnumerator SpawnWave()
@@ -44,7 +47,10 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < waveNumber; i++)
         {
-            SpawnEnemy();
+            if (GamePlayManager.instance.GetLiveCount() > 0)
+            {
+                SpawnEnemy();
+            }
             yield return new WaitForSeconds(0.3f);
         }        
     }
