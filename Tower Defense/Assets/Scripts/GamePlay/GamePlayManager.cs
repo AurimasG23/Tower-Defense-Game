@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GamePlayManager : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class GamePlayManager : MonoBehaviour
 
     public GameObject endGamePanel;
     public Text totalScoreText;
+    public InputField nameInputField;
 
     public static GamePlayManager instance;
 
@@ -114,5 +116,16 @@ public class GamePlayManager : MonoBehaviour
         {
             enemies[i].GetComponent<EnemyHealth>().Die();
         }
+    }
+
+    public void ConfirmScore()
+    {
+        string name = nameInputField.text;
+        if (name == "")
+        {
+            name = "Player";
+        }
+        LeaderboardManager.instance.SubmitNickname(name, score);
+        SceneManager.LoadScene("Menu");
     }
 }

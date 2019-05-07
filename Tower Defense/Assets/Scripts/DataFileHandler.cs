@@ -158,4 +158,43 @@ public class DataFileHandler
             writer.Close();
         }
     }
+    //-----------------------------------------------------------------------------------------------------------
+
+    public static void ReadHighScores(string dataFile, int countOfLeaders, out string[] leaderNames, out int[] leaderScores)
+    {
+        string dataPath = Application.persistentDataPath;
+        string FilePath = Path.Combine(dataPath, dataFile + ".txt");
+        leaderNames = new string[countOfLeaders];
+        leaderScores = new int[countOfLeaders];
+        if (File.Exists(FilePath))
+        {
+            StreamReader reader = new StreamReader(new FileStream(FilePath, FileMode.Open));
+            int i = 0;
+            string line = reader.ReadLine();
+            while (line != null)
+            {
+                string[] values = line.Split(' ');
+                leaderNames[i] = values[0];
+                leaderScores[i] = int.Parse(values[1]);
+                line = reader.ReadLine();
+                i++;
+            }
+            reader.Close();
+        }
+    }
+
+    public static void SaveHighScores(string dataFile, int countOfLeaders, string[] leaderNames, int[] leaderScores)
+    {
+        string dataPath = Application.persistentDataPath;
+        string FilePath = Path.Combine(dataPath, dataFile + ".txt");
+        if (leaderNames != null && leaderScores != null)
+        {
+            StreamWriter writer = new StreamWriter(new FileStream(FilePath, FileMode.Create));
+            for (int i = 0; i < countOfLeaders; i++)
+            {
+                writer.WriteLine(leaderNames[i].ToString() + " " + leaderScores[i].ToString());
+            }
+            writer.Close();
+        }
+    }
 }
