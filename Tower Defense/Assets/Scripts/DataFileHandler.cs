@@ -160,12 +160,10 @@ public class DataFileHandler
     }
     //-----------------------------------------------------------------------------------------------------------
 
-    public static void ReadHighScores(string dataFile, int countOfLeaders, out string[] leaderNames, out int[] leaderScores)
+    public static void ReadHighScores(string dataFile, string[] leaderNames, int[] leaderScores)
     {
         string dataPath = Application.persistentDataPath;
         string FilePath = Path.Combine(dataPath, dataFile + ".txt");
-        leaderNames = new string[countOfLeaders];
-        leaderScores = new int[countOfLeaders];
         if (File.Exists(FilePath))
         {
             StreamReader reader = new StreamReader(new FileStream(FilePath, FileMode.Open));
@@ -192,7 +190,10 @@ public class DataFileHandler
             StreamWriter writer = new StreamWriter(new FileStream(FilePath, FileMode.Create));
             for (int i = 0; i < countOfLeaders; i++)
             {
-                writer.WriteLine(leaderNames[i].ToString() + " " + leaderScores[i].ToString());
+                if(leaderNames[i] != null)
+                {
+                    writer.WriteLine(leaderNames[i].ToString() + " " + leaderScores[i].ToString());
+                }   
             }
             writer.Close();
         }

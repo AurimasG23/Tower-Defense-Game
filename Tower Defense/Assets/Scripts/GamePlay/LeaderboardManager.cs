@@ -23,7 +23,7 @@ public class LeaderboardManager : MonoBehaviour
         if (PlayerPrefs.HasKey("countOfLeaders"))
         {
             countOfLeaders = PlayerPrefs.GetInt("countOfLeaders");
-            DataFileHandler.ReadHighScores(dataFile, countOfLeaders, out leaderNames, out leaderScores);
+            DataFileHandler.ReadHighScores(dataFile, leaderNames, leaderScores);
         }
         else
         {
@@ -55,6 +55,7 @@ public class LeaderboardManager : MonoBehaviour
         {
             if (countOfLeaders == 0 || index == countOfLeaders)
             {
+                Debug.Log(countOfLeaders.ToString());
                 leaderNames[countOfLeaders] = name;
                 leaderScores[countOfLeaders] = score;
             }

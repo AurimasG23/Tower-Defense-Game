@@ -7,18 +7,17 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     static int leaderboardSize = 10;
-    public GameObject leaderNamesContainer;
-    public Text[] leaderNamesTexts;
-    public GameObject leaderScoresContainer;
+    public Text[] leaderNamesTexts = new Text[leaderboardSize];
     public Text[] leaderScoresTexts = new Text[leaderboardSize];
+    int countOfLeaders = 0;
+
+    string dataFile = "leaderboard";
 
     // Use this for initialization
     void Start ()
     {
-        for (int i = 0; i < leaderboardSize; i++)
-        {
-            //leaderNamesTexts[i] = leaderNamesContainer.GetComponentInChildren<Text>;
-        }
+        //PlayerPrefs.SetInt("countOfLeaders", 0); //clear
+        ShowScores();
     }
 	
 	// Update is called once per frame
@@ -34,5 +33,41 @@ public class MenuManager : MonoBehaviour
     public void Play()
     {
         SceneManager.LoadScene("GamePlay");
+    }
+
+    public void ShowScores()
+    {
+        if (PlayerPrefs.HasKey("countOfLeaders"))
+        {
+            countOfLeaders = PlayerPrefs.GetInt("countOfLeaders");
+
+            string[] names = new string[leaderboardSize];
+            int[] scores = new int[leaderboardSize];
+            DataFileHandler.ReadHighScores(dataFile, names, scores);
+
+            for (int i = 0; i < leaderboardSize; i++)
+            {
+                if(i < countOfLeaders)
+                {
+                    Debug.Log(i.ToString());
+                    leaderNamesTexts[i].text = names[i].ToString();
+                    leaderScoresTexts[i].text = scores[i].ToString();
+                }
+                else
+                {
+                    leaderNamesTexts[i].text = "";
+                    leaderScoresTexts[i].text = "";
+                }
+            }
+        }
+        else
+        {
+            countOfLeaders = 0;
+            for (int i = 0; i < leaderboardSize; i++)
+            {
+                leaderNamesTexts[i].text = "";
+                leaderScoresTexts[i].text = "";
+            }
+        }
     }
 }
