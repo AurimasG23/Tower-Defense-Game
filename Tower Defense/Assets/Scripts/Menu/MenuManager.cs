@@ -17,7 +17,6 @@ public class MenuManager : MonoBehaviour
     void Start ()
     {
         //PlayerPrefs.SetInt("countOfLeaders", 0); //clear
-        ShowScores();
     }
 	
 	// Update is called once per frame
@@ -49,7 +48,6 @@ public class MenuManager : MonoBehaviour
             {
                 if(i < countOfLeaders)
                 {
-                    Debug.Log(i.ToString());
                     leaderNamesTexts[i].text = names[i].ToString();
                     leaderScoresTexts[i].text = scores[i].ToString();
                 }

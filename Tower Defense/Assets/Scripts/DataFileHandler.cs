@@ -178,6 +178,7 @@ public class DataFileHandler
                 i++;
             }
             reader.Close();
+            Debug.Log(i.ToString());
         }
     }
 

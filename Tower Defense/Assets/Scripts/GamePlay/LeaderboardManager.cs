@@ -55,9 +55,18 @@ public class LeaderboardManager : MonoBehaviour
         {
             if (countOfLeaders == 0 || index == countOfLeaders)
             {
-                Debug.Log(countOfLeaders.ToString());
                 leaderNames[countOfLeaders] = name;
                 leaderScores[countOfLeaders] = score;
+            }
+            else if (countOfLeaders < 10)
+            {
+                for (int i = countOfLeaders; i > index; i--)
+                {
+                    leaderScores[i] = leaderScores[i - 1];
+                    leaderNames[i] = leaderNames[i - 1];
+                }
+                leaderScores[index] = score;
+                leaderNames[index] = name;
             }
             else
             {
