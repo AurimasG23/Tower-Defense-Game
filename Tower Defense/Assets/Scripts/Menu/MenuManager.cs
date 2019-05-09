@@ -48,7 +48,16 @@ public class MenuManager : MonoBehaviour
             {
                 if(i < countOfLeaders)
                 {
-                    leaderNamesTexts[i].text = names[i].ToString();
+                    string numeration;
+                    if (i+1 < 10)
+                    {
+                        numeration = "  " + (i + 1).ToString() + ".  ";
+                    }
+                    else
+                    {
+                        numeration = (i + 1).ToString() + ".  ";
+                    }
+                    leaderNamesTexts[i].text =  numeration + names[i].ToString();
                     leaderScoresTexts[i].text = scores[i].ToString();
                 }
                 else
