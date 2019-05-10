@@ -13,10 +13,31 @@ public class MenuManager : MonoBehaviour
 
     string dataFile = "leaderboard";
 
+    public Slider menuMusicSlider;
+    public AudioSource menuMusicSource;
+    public Slider sfxSlider;
+    public AudioClip menuButtonSound;
+
     // Use this for initialization
     void Start ()
     {
         //PlayerPrefs.SetInt("countOfLeaders", 0); //clear
+
+        if (PlayerPrefs.HasKey("menuVolume"))
+        {
+            menuMusicSlider.value = PlayerPrefs.GetFloat("menuVolume");
+            menuMusicSource.volume = PlayerPrefs.GetFloat("menuVolume");
+        }
+
+        if (PlayerPrefs.HasKey("sfxVolume"))
+        {
+            sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("sfxVolume", 0.3f);
+            sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume");
+        }
     }
 	
 	// Update is called once per frame
@@ -76,5 +97,26 @@ public class MenuManager : MonoBehaviour
                 leaderScoresTexts[i].text = "";
             }
         }
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void PlayButtonSound()
+    {
+        AudioManager.instance.Play(menuButtonSound, this.gameObject);
+    }
+
+    public void ChangeMenuVolume()
+    {
+        menuMusicSource.volume = menuMusicSlider.value;
+        PlayerPrefs.SetFloat("menuVolume", menuMusicSlider.value);
+    }
+
+    public void ChangeSFXVolume()
+    {
+        PlayerPrefs.SetFloat("sfxVolume", sfxSlider.value);
     }
 }
