@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
+
 
 public class MenuManager : MonoBehaviour
 {
@@ -17,6 +19,10 @@ public class MenuManager : MonoBehaviour
     public AudioSource menuMusicSource;
     public Slider sfxSlider;
     public AudioClip menuButtonSound;
+
+    public GameObject[] keybindButtons;
+
+    public static MenuManager instance;
 
     // Use this for initialization
     void Start ()
@@ -39,9 +45,17 @@ public class MenuManager : MonoBehaviour
             sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume");
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = FindObjectOfType<MenuManager>();
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
@@ -118,5 +132,11 @@ public class MenuManager : MonoBehaviour
     public void ChangeSFXVolume()
     {
         PlayerPrefs.SetFloat("sfxVolume", sfxSlider.value);
+    }
+
+    public void UpdateKeyText(string key, KeyCode code)
+    {
+        Text tmp = Array.Find(keybindButtons, x => x.name == key).GetComponentInChildren<Text>();
+        tmp.text = code.ToString();
     }
 }

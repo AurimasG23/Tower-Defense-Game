@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (GamePlayManager.instance.GetLiveCount() > 0)
+        if (GamePlayManager.instance.GetLiveCount() > 0 && !GamePlayManager.instance.IsGamePaused())
         {
             if (countDown <= 0f)
             {
@@ -47,7 +47,7 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < waveNumber; i++)
         {
-            if (GamePlayManager.instance.GetLiveCount() > 0)
+            if (GamePlayManager.instance.GetLiveCount() > 0 && !GamePlayManager.instance.IsGamePaused())
             {
                 SpawnEnemy();
             }

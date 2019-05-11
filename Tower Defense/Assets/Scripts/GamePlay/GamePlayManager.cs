@@ -29,12 +29,16 @@ public class GamePlayManager : MonoBehaviour
     public Text totalScoreText;
     public InputField nameInputField;
 
+    private bool isGamePaused;
+
     public static GamePlayManager instance;
 
     // Use this for initialization
     void Start ()
     {
         instance = this;
+
+        isGamePaused = false;
 
         canonCount = canonContainer.transform.childCount;
         crossbowCount = crossbowContainer.transform.childCount;
@@ -70,7 +74,10 @@ public class GamePlayManager : MonoBehaviour
         timer += Time.deltaTime;
         if(timer >= scoreTimeInterval)
         {
-            IncreaseScore(1);
+            if(!IsGamePaused())
+            {
+                IncreaseScore(1);
+            }
             timer = 0;
         }
     }  
@@ -126,6 +133,26 @@ public class GamePlayManager : MonoBehaviour
             name = "Player";
         }
         LeaderboardManager.instance.SubmitNickname(name, score);
+        SceneManager.LoadScene("Menu");
+    }
+
+    public bool IsGamePaused()
+    {
+        return isGamePaused;
+    }
+
+    public void PauseGame()
+    {
+        isGamePaused = true;
+    }
+
+    public void UnpauseGame()
+    {
+        isGamePaused = false;
+    }
+
+    public void BackToMenu()
+    {
         SceneManager.LoadScene("Menu");
     }
 }

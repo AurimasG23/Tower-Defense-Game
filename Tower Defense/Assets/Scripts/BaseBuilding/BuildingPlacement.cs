@@ -31,7 +31,8 @@ public class BuildingPlacement : MonoBehaviour
 	void Update ()
     {
         // jeigu paspaudžiamas pelės klavišas
-        if(Input.GetMouseButtonDown(0))
+        //if(Input.GetMouseButtonDown(0))
+        if(Input.GetKeyDown(KeyBindManager.MyInstance.Keybinds["Button(Click)"]))
         {
             RaycastHit rayHit;
 
@@ -50,7 +51,8 @@ public class BuildingPlacement : MonoBehaviour
             }          
         }
         // jeigu atleidžiamas pelės klavišas
-        if(Input.GetMouseButtonUp(0))
+        //if(Input.GetMouseButtonUp(0))
+        if(Input.GetKeyUp(KeyBindManager.MyInstance.Keybinds["Button(Click)"]))
         {
             mouseButtonPressedOnBuilding = false;
             onDrag = false;

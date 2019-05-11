@@ -39,7 +39,10 @@ public class CrossbowTowerControl : MonoBehaviour
         //shooting
         if (fireCountDown <= 0f)
         {
-            Shoot();
+            if(!GamePlayManager.instance.IsGamePaused())
+            {
+                Shoot();
+            }           
             fireCountDown = 1f / fireRate;
         }
         fireCountDown -= Time.deltaTime;

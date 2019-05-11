@@ -32,7 +32,8 @@ public class Click : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if(!EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonDown(0))
+        //if(!EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonDown(0))
+        if (!EventSystem.current.IsPointerOverGameObject() && Input.GetKeyDown(KeyBindManager.MyInstance.Keybinds["Button(Click)"]))
         {
             RaycastHit rayHit;
 
@@ -50,7 +51,8 @@ public class Click : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(0))
+        //if (Input.GetMouseButtonUp(0))
+        if(Input.GetKeyUp(KeyBindManager.MyInstance.Keybinds["Button(Click)"]))
         {
             if (Time.timeSinceLevelLoad - clickTime <= maxBuildingClickDuration)
             {
@@ -122,7 +124,8 @@ public class Click : MonoBehaviour
             }
 
 
-            if (Input.GetMouseButton(0))
+            //if (Input.GetMouseButton(0))
+            if(Input.GetKey(KeyBindManager.MyInstance.Keybinds["Button(Click)"]))
             {
                 Diference = (Camera.main.ScreenToWorldPoint(Input.mousePosition)) - Camera.main.transform.position;
                 if (Drag == false)
