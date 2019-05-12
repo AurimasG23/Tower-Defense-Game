@@ -810,6 +810,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partToRotate: {fileID: 4272824796943620}
-  bulletPrefab: {fileID: 1369403612742478, guid: ae0a06dbb73ab844699f7ba5523dedf7,
+  bulletPrefab: {fileID: 1329189650239726, guid: ae0a06dbb73ab844699f7ba5523dedf7,
     type: 2}
   firePoint: {fileID: 4927155377732346}

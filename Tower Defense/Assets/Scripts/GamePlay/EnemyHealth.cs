@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    private static double hitpoints = 100;
+    public int enemyIndex;
+    public double hitpoints = 100;
     double health;
     public Image healthBar;
 
-    public GameObject deathEffect;
+    public GameObject[] deathEffects;
 
-    int pointsForDeath = 5;
+    public int pointsForDeath = 5;
 
     // Use this for initialization
     void Start ()
@@ -57,7 +58,7 @@ public class EnemyHealth : MonoBehaviour
     public void Die()
     {
         Vector3 deathEffectPosition = new Vector3(transform.position.x, 2.5f, transform.position.z);
-        GameObject deathEff = (GameObject)Instantiate(deathEffect, deathEffectPosition, Quaternion.identity);
+        GameObject deathEff = (GameObject)Instantiate(deathEffects[enemyIndex], deathEffectPosition, Quaternion.identity);
         Destroy(deathEff, 5f);
         GamePlayManager.instance.IncreaseScore(pointsForDeath);
         Destroy(gameObject);

@@ -19,8 +19,8 @@ public class CanonBullet : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        Vector3 dir = target.position - transform.position;
+        Vector3 targetPosition = target.GetChild(0).position;
+        Vector3 dir = targetPosition - transform.position;
         float currentDistance = speed * Time.deltaTime;
 
         if(dir.magnitude <= currentDistance)
