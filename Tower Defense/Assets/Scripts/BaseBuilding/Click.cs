@@ -46,6 +46,7 @@ public class Click : MonoBehaviour
             else if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity,
                 movelessLayer, QueryTriggerInteraction.UseGlobal))
             {
+                Debug.Log("ground");
                 clickTime = Time.timeSinceLevelLoad;
                 deselect = true;
             }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class GamePlayManager : MonoBehaviour
 {
@@ -28,6 +29,15 @@ public class GamePlayManager : MonoBehaviour
     public GameObject endGamePanel;
     public Text totalScoreText;
     public InputField nameInputField;
+
+    private int selectedObstacleIndex;
+    [SerializeField]
+    private LayerMask movelessLayer;
+    private float clickTime;
+    private float maxObstacleClickDuration = 0.3f;
+    public GameObject bombPrefab;
+    public Transform bombSpawnPoint;   //kulkos atsiradimo vieta
+    private Vector3 targetPosition;
 
     private bool isGamePaused;
 
@@ -66,6 +76,8 @@ public class GamePlayManager : MonoBehaviour
         livesText.text = "Lives: " + liveCount.ToString();
 
         timer = 0;
+
+        selectedObstacleIndex = -1;
     }
 	
 	// Update is called once per frame
@@ -79,6 +91,33 @@ public class GamePlayManager : MonoBehaviour
                 IncreaseScore(1);
             }
             timer = 0;
+        }
+
+        if(selectedObstacleIndex == 0)
+        {
+            //if(!EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonDown(0))
+            if (!EventSystem.current.IsPointerOverGameObject() && Input.GetKeyDown(KeyBindManager.MyInstance.Keybinds["Button(Click)"]))
+            {
+                RaycastHit rayHit;
+
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out rayHit, Mathf.Infinity,
+                    movelessLayer, QueryTriggerInteraction.UseGlobal))
+                {
+                    Debug.Log("ground");
+                    targetPosition = new Vector3(rayHit.point.x, 0, rayHit.point.z); ;
+                    clickTime = Time.timeSinceLevelLoad;
+                }
+            }
+        }
+
+        //if (Input.GetMouseButtonUp(0))
+        if (Input.GetKeyUp(KeyBindManager.MyInstance.Keybinds["Button(Click)"]))
+        {
+            if (Time.timeSinceLevelLoad - clickTime <= maxObstacleClickDuration)
+            {              
+                DeselectObstacle();
+                ThrowBomb();
+            }
         }
     }  
 
@@ -154,5 +193,26 @@ public class GamePlayManager : MonoBehaviour
     public void BackToMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void SelectObstacle(int index)
+    {       
+        selectedObstacleIndex = index;
+    }
+
+    public void DeselectObstacle()
+    {
+        selectedObstacleIndex = -1;
+    }
+
+    public void ThrowBomb()
+    {
+        GameObject newBomb = (GameObject)Instantiate(bombPrefab, bombSpawnPoint.position, bombSpawnPoint.rotation);
+        Bomb bomb = newBomb.GetComponent<Bomb>();
+
+        if (bomb != null)
+        {
+            bomb.Seek(targetPosition);
+        }
     }
 }

@@ -173,6 +173,11 @@ public class SelectAndMove : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
+    public void CancelBaseModification()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
     private Vector2[,] FindBuildingSquares(int biuldingIndex, BuildingLocation buildingLocation)
     {
         Vector2[,]  squares = new Vector2[buildingsDimensions[biuldingIndex].xLength, buildingsDimensions[biuldingIndex].zWidth];

@@ -39,7 +39,7 @@ public class AddAndRemove : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        shopMoneyText.text = money.ToString();
+        shopMoneyText.text = "Money: " + money.ToString() + "$";
     }
 
     public void BuyBuilding(int index)
