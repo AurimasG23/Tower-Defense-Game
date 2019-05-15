@@ -45,6 +45,5 @@ public class CanonBullet : MonoBehaviour
             enemyHealth.ReduceHealth(damagePerShot);
         }
         Destroy(gameObject);
-        //Destroy(target.gameObject);   //prieso sunaikinimas
     }
 }
