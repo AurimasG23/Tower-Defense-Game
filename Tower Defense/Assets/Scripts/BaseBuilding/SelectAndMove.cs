@@ -167,8 +167,11 @@ public class SelectAndMove : MonoBehaviour
     public void SaveBuildingsLocations()
     {
         //Renew();
-        DataFileHandler.ChangeBuildingLocations(buildingLocationsDataFile, buildingsLocations, numberOfBuildings);
-        DataFileHandler.ChangeBaseSquares(baseSquaresDataFile, base_squares, baseGridDimensionX_p + baseGridDimensionX_n, baseGridDimensionZ_p + baseGridDimensionZ_n);
+        DataFileHandler.ChangeBuildingLocations(buildingLocationsDataFile, 
+            buildingsLocations, numberOfBuildings);
+        DataFileHandler.ChangeBaseSquares(baseSquaresDataFile, base_squares, 
+            baseGridDimensionX_p + baseGridDimensionX_n, 
+            baseGridDimensionZ_p + baseGridDimensionZ_n);
         AddAndRemove.instance.SaveMoneyValue();
         SceneManager.LoadScene("Menu");
     }

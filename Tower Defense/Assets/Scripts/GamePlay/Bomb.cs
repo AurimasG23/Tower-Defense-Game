@@ -9,7 +9,7 @@ public class Bomb : MonoBehaviour
 
     private Vector3 targetPosition;
 
-    private float speed = 70f;
+    private float speed = 85f;
 
     private string enemyTag = "Enemy";
 

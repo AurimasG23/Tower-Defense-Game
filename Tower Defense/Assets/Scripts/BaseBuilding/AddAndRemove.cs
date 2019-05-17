@@ -71,7 +71,8 @@ public class AddAndRemove : MonoBehaviour
         {
             money = money + canon_price;
         }
-        else if(buildingIndex >= crossbowTower_startIndex && buildingIndex < crossbowTower_startIndex + 10)
+        else if(buildingIndex >= crossbowTower_startIndex && 
+            buildingIndex < crossbowTower_startIndex + 10)
         {
             money = money + crossbowTower_price;
         }

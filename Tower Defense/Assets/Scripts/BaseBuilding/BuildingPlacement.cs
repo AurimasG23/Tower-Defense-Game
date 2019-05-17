@@ -81,7 +81,7 @@ public class BuildingPlacement : MonoBehaviour
 
     }
 
-    // gaunmas pastato transformavimo objektas ir pastato matmenys
+    // gaunamas pastato transformavimo objektas ir pastato matmenys
     public void SetItem(GameObject building, BuildingDimensions dimensions)
     {
         selectedBuilding = building.transform;

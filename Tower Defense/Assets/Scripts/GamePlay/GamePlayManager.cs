@@ -36,8 +36,13 @@ public class GamePlayManager : MonoBehaviour
     private float clickTime;
     private float maxObstacleClickDuration = 0.3f;
     public GameObject bombPrefab;
-    public Transform bombSpawnPoint;   //kulkos atsiradimo vieta
+    public Transform bombSpawnPoint;   //bombos atsiradimo vieta
     private Vector3 targetPosition;
+    public Button[] obstacleButtons;
+    public Image[] cooldownImages;
+    private float bombCoolDownDuration = 10f;
+    private float bombCoolDownTime;
+    private bool isBombReady;
 
     private bool isGamePaused;
 
@@ -78,6 +83,7 @@ public class GamePlayManager : MonoBehaviour
         timer = 0;
 
         selectedObstacleIndex = -1;
+        isBombReady = true;
     }
 	
 	// Update is called once per frame
@@ -114,11 +120,13 @@ public class GamePlayManager : MonoBehaviour
         if (Input.GetKeyUp(KeyBindManager.MyInstance.Keybinds["Button(Click)"]))
         {
             if (Time.timeSinceLevelLoad - clickTime <= maxObstacleClickDuration)
-            {              
-                DeselectObstacle();
+            {                            
                 ThrowBomb();
+                DeselectObstacle();
             }
         }
+
+        CooldownImageStatus();
     }  
 
     public void DecreaseLiveCount()
@@ -207,12 +215,33 @@ public class GamePlayManager : MonoBehaviour
 
     public void ThrowBomb()
     {
-        GameObject newBomb = (GameObject)Instantiate(bombPrefab, bombSpawnPoint.position, bombSpawnPoint.rotation);
+        cooldownImages[selectedObstacleIndex].fillAmount = 1;
+        obstacleButtons[selectedObstacleIndex].enabled = false;
+        isBombReady = false;
+        GameObject newBomb = (GameObject)Instantiate(bombPrefab, bombSpawnPoint.position, Quaternion.LookRotation(targetPosition - bombSpawnPoint.position));
         Bomb bomb = newBomb.GetComponent<Bomb>();
 
         if (bomb != null)
         {
             bomb.Seek(targetPosition);
+        }
+
+        bombCoolDownTime = Time.timeSinceLevelLoad;
+    }
+
+    public void CooldownImageStatus()
+    {
+        if(!isBombReady)
+        {
+            if (Time.timeSinceLevelLoad - bombCoolDownTime <= bombCoolDownDuration)
+            {
+                cooldownImages[0].fillAmount = 1 - ((Time.timeSinceLevelLoad - bombCoolDownTime) / 10);
+            }
+            else
+            {
+                cooldownImages[0].fillAmount = 0;
+                obstacleButtons[0].enabled = true;
+            }
         }
     }
 }
