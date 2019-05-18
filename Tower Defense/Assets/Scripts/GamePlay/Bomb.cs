@@ -5,11 +5,11 @@ using UnityEngine;
 public class Bomb : MonoBehaviour
 {
     double damagePerShot = 100;
-    double explosionRange = 10;
+    double explosionRange = 12;
 
     private Vector3 targetPosition;
 
-    private float speed = 85f;
+    private float speed = 70f;
 
     private string enemyTag = "Enemy";
 

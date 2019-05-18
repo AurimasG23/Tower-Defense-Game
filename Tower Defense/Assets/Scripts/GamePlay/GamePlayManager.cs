@@ -82,6 +82,7 @@ public class GamePlayManager : MonoBehaviour
 
         timer = 0;
 
+        obstacleButtons[0].image.color = new Color(0, 0, 0, 1);
         selectedObstacleIndex = -1;
         isBombReady = true;
     }
@@ -126,7 +127,10 @@ public class GamePlayManager : MonoBehaviour
             }
         }
 
-        CooldownImageStatus();
+        if (!IsGamePaused())
+        {
+            CooldownImageStatus();
+        }
     }  
 
     public void DecreaseLiveCount()
@@ -155,6 +159,7 @@ public class GamePlayManager : MonoBehaviour
     {
         totalScoreText.text = "Total score: " + score.ToString();
         endGamePanel.transform.gameObject.SetActive(true);
+        isGamePaused = true;
         DestroyAllEnemies();
     }
 
@@ -206,11 +211,13 @@ public class GamePlayManager : MonoBehaviour
     public void SelectObstacle(int index)
     {       
         selectedObstacleIndex = index;
+        obstacleButtons[0].image.color = new Color(1, 1, 1, 1);
     }
 
     public void DeselectObstacle()
     {
         selectedObstacleIndex = -1;
+        obstacleButtons[0].image.color = new Color(0, 0, 0, 1);
     }
 
     public void ThrowBomb()

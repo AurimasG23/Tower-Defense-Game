@@ -34,6 +34,12 @@ public class MenuManager : MonoBehaviour
             menuMusicSlider.value = PlayerPrefs.GetFloat("menuVolume");
             menuMusicSource.volume = PlayerPrefs.GetFloat("menuVolume");
         }
+        else
+        {
+            PlayerPrefs.SetFloat("menuVolume", 0.3f);
+            menuMusicSlider.value = PlayerPrefs.GetFloat("menuVolume");
+            menuMusicSource.volume = PlayerPrefs.GetFloat("menuVolume");
+        }
 
         if (PlayerPrefs.HasKey("sfxVolume"))
         {
